@@ -2,9 +2,21 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Title");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Mouse Dodge");
 
 	sf::Event event;
+
+	sf::Font font;
+	if (!font.loadFromFile("arial.ttf"))
+	{
+		// handle error
+	}
+
+	sf::Text text;
+	text.setFont(font);
+	text.setFillColor(sf::Color::White);
+	text.setCharacterSize(40);
+	text.setString("TEST");
 
 	while (window.isOpen())
 	{
@@ -15,6 +27,11 @@ int main()
 				window.close();
 			}
 		}
+		window.clear();
+
+		window.draw(text);
+
+		window.display();
 	}
 
 	return 0;
