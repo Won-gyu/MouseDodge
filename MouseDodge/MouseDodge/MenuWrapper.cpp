@@ -1,7 +1,9 @@
 #include "MenuWrapper.h"
 
-void MenuWrapper::Init()
+void MenuWrapper::Init(sf::RenderWindow* window)
 {
+	this->window = window;
+
 	if (!font.loadFromFile("arial.ttf"))
 	{
 		// handle error
@@ -22,30 +24,43 @@ void MenuWrapper::Init()
 
 	menuState = (int)MenuState::MENU_GAME;
 	UpdateMenuColor();
+
+	sceneState = SceneState::SCENE_MENU;
 }
 
 void MenuWrapper::Update()
 {
+	if (sceneState == SceneState::SCENE_GAME)
+	{
+		inGame.Update();
+	}
 }
 
 void MenuWrapper::OnEvent(const sf::Event& event)
 {
-	if (event.type == sf::Event::KeyReleased)
+	if (sceneState == SceneState::SCENE_MENU)
 	{
-		if (event.key.code == sf::Keyboard::Down)
+		if (event.type == sf::Event::KeyReleased)
 		{
-			if (menuState < MENU_COUNT - 1)
+			if (event.key.code == sf::Keyboard::Enter)
 			{
-				menuState = menuState + 1;
-				UpdateMenuColor();
+				SelectMenu((MenuState)menuState);
 			}
-		}
-		else if (event.key.code == sf::Keyboard::Up)
-		{
-			if (menuState > 0)
+			else if (event.key.code == sf::Keyboard::Down)
 			{
-				menuState = menuState - 1;
-				UpdateMenuColor();
+				if (menuState < MENU_COUNT - 1)
+				{
+					menuState = menuState + 1;
+					UpdateMenuColor();
+				}
+			}
+			else if (event.key.code == sf::Keyboard::Up)
+			{
+				if (menuState > 0)
+				{
+					menuState = menuState - 1;
+					UpdateMenuColor();
+				}
 			}
 		}
 	}
@@ -53,8 +68,15 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 
 void MenuWrapper::Render(sf::RenderWindow& window)
 {
-	for (int i = 0; i < MENU_COUNT; i++)
-		window.draw(text[i]);
+	if (sceneState == SceneState::SCENE_MENU)
+	{
+		for (int i = 0; i < MENU_COUNT; i++)
+			window.draw(text[i]);
+	}
+	else if (sceneState == SceneState::SCENE_GAME)
+	{
+		inGame.Render(window);
+	}
 }
 
 
@@ -70,5 +92,21 @@ void MenuWrapper::UpdateMenuColor()
 
 void MenuWrapper::SelectMenu(MenuState menuState)
 {
-
+	if (menuState == MenuState::MENU_GAME)
+	{
+		sceneState = SceneState::SCENE_GAME;
+		inGame.Init();
+	}
+	else if (menuState == MenuState::MENU_SCORES)
+	{
+		sceneState = SceneState::SCENE_SCORES;
+	}
+	else if (menuState == MenuState::MENU_CREDIT)
+	{
+		sceneState = SceneState::SCENE_CREDIT;
+	}
+	else if (menuState == MenuState::MENU_EXIT)
+	{
+		window->close();
+	}
 }

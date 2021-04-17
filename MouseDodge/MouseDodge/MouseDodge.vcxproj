@@ -150,10 +150,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InGame.h" />
     <ClInclude Include="MenuWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

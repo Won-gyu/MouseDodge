@@ -7,7 +7,7 @@ int main()
 	sf::Event event;
 
 	MenuWrapper menu;
-	menu.Init();
+	menu.Init(&window);
 
 	while (window.isOpen())
 	{
