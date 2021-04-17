@@ -34,6 +34,14 @@ void MenuWrapper::Update()
 	{
 		inGame.Update();
 	}
+	else if (sceneState == SceneState::SCENE_SCORES)
+	{
+		sceneScores.Update();
+	}
+	else if (sceneState == SceneState::SCENE_CREDIT)
+	{
+		sceneCredit.Update();
+	}
 }
 
 void MenuWrapper::OnEvent(const sf::Event& event)
@@ -77,6 +85,14 @@ void MenuWrapper::Render(sf::RenderWindow& window)
 	{
 		inGame.Render(window);
 	}
+	else if (sceneState == SceneState::SCENE_SCORES)
+	{
+		sceneScores.Render(window);
+	}
+	else if (sceneState == SceneState::SCENE_CREDIT)
+	{
+		sceneCredit.Render(window);
+	}
 }
 
 
@@ -100,10 +116,12 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 	else if (menuState == MenuState::MENU_SCORES)
 	{
 		sceneState = SceneState::SCENE_SCORES;
+		sceneScores.Init();
 	}
 	else if (menuState == MenuState::MENU_CREDIT)
 	{
 		sceneState = SceneState::SCENE_CREDIT;
+		sceneCredit.Init();
 	}
 	else if (menuState == MenuState::MENU_EXIT)
 	{

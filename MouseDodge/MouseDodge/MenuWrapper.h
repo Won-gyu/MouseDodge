@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "InGame.h"
+#include "SceneScores.h"
+#include "SceneCredit.h"
 
 #define MENU_COUNT 4
 
@@ -40,4 +42,6 @@ private:
 	sf::Text text[MENU_COUNT];
 
 	InGame inGame;
+	SceneScores sceneScores;
+	SceneCredit sceneCredit;
 };

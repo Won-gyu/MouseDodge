@@ -24,12 +24,24 @@
     <ClCompile Include="InGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneScores.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneCredit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneScores.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneCredit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
