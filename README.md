@@ -1,6 +1,7 @@
 # MouseDodge
 - A player move Hero using mouse and dodge monsters.
 - Hero and Monsters may be circle.
+- rough diagram of in-game objects https://docs.google.com/drawings/d/1bak9Jg4cMHtfxeA9ubuS-2ohl1nBc-tMi1ohaXNzhO4/edit?usp=sharing
 
 Won-gyu Hwang
 - Desgign a program in general
