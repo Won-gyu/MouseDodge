@@ -8,6 +8,7 @@ int main()
 
 	MenuWrapper menu;
 	menu.Init(&window);
+	sf::Clock clock;
 
 	if (!Global::commonFont.loadFromFile("arial.ttf"))
 	{
@@ -16,6 +17,7 @@ int main()
 
 	while (window.isOpen())
 	{
+		float dt = clock.restart().asSeconds();
 		while (window.pollEvent(event))
 		{
 			menu.OnEvent(event);
@@ -25,7 +27,7 @@ int main()
 			}
 		}
 		window.clear();
-		menu.Update(window);
+		menu.Update(window, dt);
 		menu.Render(window);
 		window.display();
 	}

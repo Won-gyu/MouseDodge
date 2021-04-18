@@ -2,6 +2,7 @@
 
 void MenuWrapper::Init(sf::RenderWindow* window)
 {
+	Global::menuWrapper = this;
 	this->window = window;
 
 	for (int i = 0; i < MENU_COUNT; i++)
@@ -23,11 +24,11 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	sceneState = SceneState::SCENE_MENU;
 }
 
-void MenuWrapper::Update(sf::RenderWindow& window)
+void MenuWrapper::Update(sf::RenderWindow& window, float& dt)
 {
 	if (sceneState == SceneState::SCENE_GAME)
 	{
-		inGame.Update(window);
+		inGame.Update(window, dt);
 	}
 	else if (sceneState == SceneState::SCENE_SCORES)
 	{
@@ -64,6 +65,16 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 					menuState = menuState - 1;
 					UpdateMenuColor();
 				}
+			}
+		}
+	}
+	else
+	{
+		if (event.type == sf::Event::KeyReleased)
+		{
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				sceneState = SceneState::SCENE_MENU;
 			}
 		}
 	}

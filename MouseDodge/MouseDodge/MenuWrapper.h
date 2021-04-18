@@ -26,7 +26,7 @@ class MenuWrapper
 public:
 	void Init(sf::RenderWindow* window);
 	void OnEvent(const sf::Event& event);
-	void Update(sf::RenderWindow& window);
+	void Update(sf::RenderWindow& window, float& dt);
 	void Render(sf::RenderWindow& window);
 
 private:
