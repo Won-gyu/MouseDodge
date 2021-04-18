@@ -11,7 +11,10 @@ public:
 	void Render(sf::RenderWindow& window);
 
 private:
+	void UpdateScore();
+
 	sf::Text textScore;
+	std::string strScore;
 
 	int score;
 	Hero hero;
