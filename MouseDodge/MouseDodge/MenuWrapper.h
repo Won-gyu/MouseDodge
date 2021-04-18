@@ -2,9 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Global.h"
-#include "InGame.h"
-#include "SceneScores.h"
-#include "SceneCredit.h"
 
 #define MENU_COUNT 4
 

@@ -1,4 +1,4 @@
-#include "BaseObject.h"
+#include "Global.h"
 
 BaseObject::BaseObject(float posX, float posY)
 {

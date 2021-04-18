@@ -1,4 +1,4 @@
-#include "Hero.h"
+#include "Global.h"
 
 Hero::Hero(int hp, float radius)
 {

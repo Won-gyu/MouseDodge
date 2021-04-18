@@ -1,4 +1,4 @@
-#include "InGame.h"
+#include "Global.h"
 
 void InGame::Init()
 {
@@ -7,7 +7,7 @@ void InGame::Init()
 	textScore.setCharacterSize(40);
 	UpdateScore();
 
-	hero.Init(100, 30);
+	hero.Init(100, 10);
 }
 
 void InGame::Update(sf::RenderWindow& window)
