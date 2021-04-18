@@ -18,5 +18,8 @@ Zack Harrington
 - Implement "Credit" page
 - Add sounds (if possible)
 
-## 04-18-2021
+## 04-17-2021
 Set up project for SFML watching https://youtu.be/YfMQyOw1zik
+
+## 04-18-2021
+Implemented Menu & Hero
