@@ -9,7 +9,7 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 		text[i].setFont(Global::commonFont);
 		text[i].setFillColor(sf::Color::White);
 		text[i].setCharacterSize(40);
-		text[i].setPosition(0, i * 50);
+		text[i].setPosition(0, (float)(i * 50));
 	}
 
 	text[0].setString("Start Game");

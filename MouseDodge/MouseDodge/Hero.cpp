@@ -20,8 +20,8 @@ void Hero::Init(int hp, float radius)
 void Hero::Update(sf::RenderWindow& window)
 {
 	sf::Vector2i position = sf::Mouse::getPosition(window);
-	posX = position.x;
-	posY = position.y;
+	posX = (float)position.x;
+	posY = (float)position.y;
 	circleShape.setPosition(posX - radius, posY - radius);
 }
 
