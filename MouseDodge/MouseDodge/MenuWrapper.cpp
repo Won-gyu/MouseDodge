@@ -4,14 +4,9 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 {
 	this->window = window;
 
-	if (!font.loadFromFile("arial.ttf"))
-	{
-		// handle error
-	}
-
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
-		text[i].setFont(font);
+		text[i].setFont(Global::commonFont);
 		text[i].setFillColor(sf::Color::White);
 		text[i].setCharacterSize(40);
 		text[i].setPosition(0, i * 50);

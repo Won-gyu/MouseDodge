@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "Global.h"
 #include "Hero.h"
 
 class InGame
@@ -11,5 +11,8 @@ public:
 	void Render(sf::RenderWindow& window);
 
 private:
+	sf::Text textScore;
+
+	int score;
 	Hero hero;
 };

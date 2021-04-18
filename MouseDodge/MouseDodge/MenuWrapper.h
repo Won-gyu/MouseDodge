@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Global.h"
 #include "InGame.h"
 #include "SceneScores.h"
 #include "SceneCredit.h"
@@ -38,7 +39,6 @@ private:
 	sf::RenderWindow* window;
 	int menuState;
 	SceneState sceneState;
-	sf::Font font;
 	sf::Text text[MENU_COUNT];
 
 	InGame inGame;

@@ -1,5 +1,5 @@
 #include "MenuWrapper.h"
-
+#include "Global.h"
 
 int main()
 {
@@ -8,6 +8,11 @@ int main()
 
 	MenuWrapper menu;
 	menu.Init(&window);
+
+	if (!Global::commonFont.loadFromFile("arial.ttf"))
+	{
+		// handle error
+	}
 
 	while (window.isOpen())
 	{
