@@ -20,7 +20,7 @@ int main()
 			}
 		}
 		window.clear();
-		menu.Update();
+		menu.Update(window);
 		menu.Render(window);
 		window.display();
 	}

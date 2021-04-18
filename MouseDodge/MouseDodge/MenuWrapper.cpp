@@ -28,11 +28,11 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	sceneState = SceneState::SCENE_MENU;
 }
 
-void MenuWrapper::Update()
+void MenuWrapper::Update(sf::RenderWindow& window)
 {
 	if (sceneState == SceneState::SCENE_GAME)
 	{
-		inGame.Update();
+		inGame.Update(window);
 	}
 	else if (sceneState == SceneState::SCENE_SCORES)
 	{

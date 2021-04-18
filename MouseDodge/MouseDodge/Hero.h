@@ -9,7 +9,7 @@ public:
 	~Hero();
 
 	void Init(int hp, float radius);
-	void Update();
+	void Update(sf::RenderWindow& window);
 	void Render(sf::RenderWindow& window);
 
 private:

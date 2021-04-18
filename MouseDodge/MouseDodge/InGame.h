@@ -7,7 +7,7 @@ class InGame
 {
 public:
 	void Init();
-	void Update();
+	void Update(sf::RenderWindow& window);
 	void Render(sf::RenderWindow& window);
 
 private:
