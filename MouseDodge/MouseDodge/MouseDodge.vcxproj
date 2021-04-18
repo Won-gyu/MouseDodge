@@ -150,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuWrapper.cpp" />
@@ -157,6 +159,8 @@
     <ClCompile Include="SceneScores.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="MenuWrapper.h" />
     <ClInclude Include="SceneCredit.h" />

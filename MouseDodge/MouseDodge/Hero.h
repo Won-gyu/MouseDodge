@@ -5,9 +5,16 @@
 class Hero : public BaseObject
 {
 public:
-	Hero(int hp = 100);
+	Hero(int hp = 100, float radius = 20);
 	~Hero();
 
-protected:
+	void Init(int hp, float radius);
+	void Update();
+	void Render(sf::RenderWindow& window);
+
+private:
+	sf::CircleShape circleShape;
+
 	int hp;
+	int radius;
 };

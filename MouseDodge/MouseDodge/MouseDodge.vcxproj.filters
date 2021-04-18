@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\InGameObjects">
+      <UniqueIdentifier>{8f09799a-0473-4102-9990-d252aebbd529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InGameObjects">
+      <UniqueIdentifier>{25a03258-021c-4471-bbfb-972cb7f6b0c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -30,6 +36,12 @@
     <ClCompile Include="SceneCredit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Source Files\InGameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>Source Files\InGameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuWrapper.h">
@@ -43,6 +55,12 @@
     </ClInclude>
     <ClInclude Include="SceneCredit.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Header Files\InGameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>Header Files\InGameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
