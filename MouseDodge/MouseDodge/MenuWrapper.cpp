@@ -95,7 +95,6 @@ void MenuWrapper::Render(sf::RenderWindow& window)
 	}
 }
 
-
 void MenuWrapper::UpdateMenuColor()
 {
 	for (int i = 0; i < MENU_COUNT; i++)
