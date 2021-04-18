@@ -1,4 +1,4 @@
-#include "Global.h"
+#include "InGame.h"
 
 void InGame::Init()
 {

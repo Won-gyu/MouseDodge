@@ -7,11 +7,11 @@
 #include "InGame.h"
 #include "SceneScores.h"
 #include "SceneCredit.h"
-// #include "MenuWrapper.h"
 
+class MenuWrapper;
 class Global
 {
 public:
-	// static MenuWrapper* menuWrapper;
+	static MenuWrapper* menuWrapper;
 	static sf::Font commonFont;
 };

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include "Global.h"
 
 #define MENU_COUNT 4
@@ -21,6 +20,7 @@ enum class SceneState
 	SCENE_CREDIT
 };
 
+class Global;
 class MenuWrapper
 {
 public:

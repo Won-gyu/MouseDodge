@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Global.h"
-
 class InGame
 {
 public:

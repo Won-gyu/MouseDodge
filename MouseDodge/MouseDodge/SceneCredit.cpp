@@ -1,5 +1,13 @@
 #include "SceneCredit.h"
 
+SceneCredit::SceneCredit()
+{
+}
+
+SceneCredit::~SceneCredit()
+{
+}
+
 void SceneCredit::Init()
 {
 
