@@ -4,6 +4,11 @@
 sf::Font Global::commonFont;
 MenuWrapper* Global::menuWrapper = nullptr;
 
+void Global::OnHeroHit()
+{
+	menuWrapper->GetInGame().OnHeroHit();
+}
+
 void Global::OnHeroDied()
 {
 	menuWrapper->OnHeroDied();

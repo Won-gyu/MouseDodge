@@ -9,5 +9,6 @@ public:
 	static sf::Font commonFont;
 
 	static void OnHeroDied();
+	static void OnHeroHit();
 	static void OnMonsterDied(int index);
 };

@@ -23,10 +23,11 @@ void BaseMonster::OnUpdate()
 void BaseMonster::Update(sf::RenderWindow& window, int index)
 {
 	OnUpdate();
+	id = index;
 
 	if (!checkInBounds(800, 600))
 	{
-		Global::OnMonsterDied(index);
+		Die();
 	}
 }
 
@@ -43,4 +44,9 @@ bool BaseMonster::checkInBounds(int windowSizeX, int windowSizeY)
 		return false;
 	}
 	return true;
+}
+
+void BaseMonster::Die()
+{
+	Global::OnMonsterDied(id);
 }

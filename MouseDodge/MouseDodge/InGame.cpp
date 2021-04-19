@@ -5,10 +5,15 @@ void InGame::Init()
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
 	textScore.setCharacterSize(40);
+	textHp.setPosition(0, 50);
+	textHp.setFont(Global::commonFont);
+	textHp.setFillColor(sf::Color::White);
+	textHp.setCharacterSize(40);
 	score = 0;
-	UpdateScore();
+	UpdateScoreText();
 
-	hero.Init(100, 10);
+	hero.Init(10, 10);
+	UpdateHpText();
 
 	// Monsters
 	numMonsters = 0;
@@ -27,7 +32,7 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 	if (scoreTimer > 1)
 	{
 		score++;
-		UpdateScore();
+		UpdateScoreText();
 		scoreTimer = 0;
 	}
 	// Update monsters
@@ -39,7 +44,7 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		monsters[i]->Update(window, i);
 	}
 
-	hero.Update(window);
+	hero.Update(window, monsters);
 }
 
 void InGame::Render(sf::RenderWindow& window)
@@ -52,14 +57,20 @@ void InGame::Render(sf::RenderWindow& window)
 
 	hero.Render(window);
 	window.draw(textScore);
+	window.draw(textHp);
 }
 
-void InGame::UpdateScore()
+void InGame::UpdateScoreText()
 {
 	strScore = "Score: " + std::to_string(score);
 	textScore.setString(strScore);
 }
 
+void InGame::UpdateHpText()
+{
+	strHp = "Hp: " + std::to_string(hero.GetHp());
+	textHp.setString(strHp);
+}
 
 void InGame::SpawnMonster()
 {
@@ -114,11 +125,15 @@ void InGame::RemoveMonster(int index)
 	for (int i = index; i < numMonsters - 1; i++)
 	{
 		monsters[i] = monsters[i + 1];
-		printf("%d\n", i);
 	}
 	monsters[numMonsters - 1] = nullptr; // avoid duplicate at the end after shifting
 
 	numMonsters--;
+}
+
+void InGame::OnHeroHit()
+{
+	UpdateHpText();
 }
 
 void InGame::OnMonsterDied(int index)

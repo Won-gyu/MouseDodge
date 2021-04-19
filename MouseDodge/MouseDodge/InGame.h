@@ -14,14 +14,18 @@ public:
 	void Update(sf::RenderWindow& window, float& dt);
 	void Render(sf::RenderWindow& window);
 
+	void OnHeroHit();
 	void OnMonsterDied(int index);
 
 private:
-	void UpdateScore();
+	void UpdateScoreText();
+	void UpdateHpText();
 	void SpawnMonster();
 	void RemoveMonster(int index);
 
+	sf::Text textHp;
 	sf::Text textScore;
+	std::string strHp;
 	std::string strScore;
 
 	int score;

@@ -18,6 +18,8 @@ public:
 	virtual void OnUpdate();
 	virtual void Render(sf::RenderWindow& window);
 
+	void Die();
+
 protected:
 	bool checkInBounds(int windowSizeX, int windowSizeY);
 
@@ -25,5 +27,5 @@ protected:
 
 	float speedX;
 	float speedY;
-
+	int id;
 };
