@@ -62,42 +62,43 @@ void InGame::SpawnMonster()
 {
 	BaseMonster* monster;
 	int spawnX = 0, spawnY = 0;
-	float radius = 30;
 	double speedX = 0.0, speedY = 0.0;
+
+	float radius = (double)(rand() % 30) + 10;
 
 	switch (rand() % 4)
 	{
 	case 0: // Spawn at top
 		spawnX = rand() % 800;
 		spawnY = 0 - radius;
-		speedX = (double)(rand() % 11) - 5;
-		speedY = (double)(rand() % 10) + 1;
+		speedX = (double)(rand() % 9) - 4;
+		speedY = (double)(rand() % 3) + 2;
 		break;
 	case 1: // Spawn at bottom
 		spawnX = rand() % 800;
 		spawnY = 600 + radius;
-		speedX = (double)(rand() % 11) - 5;
-		speedY = 0 - (double)(rand() % 10) + 1;
+		speedX = (double)(rand() % 9) - 4;
+		speedY = 0 - (double)(rand() % 3) + 2;
 		break;
 	case 2: // Spawn at left
 		spawnX = 0 - radius;
 		spawnY = rand() % 600;
-		speedX = (double)(rand() % 10) + 1;
-		speedY = (double)(rand() % 11) - 5;
+		speedX = (double)(rand() % 3) + 2;
+		speedY = (double)(rand() % 9) - 4;
 		break;
 	default://3 // Spawn at right
 		spawnX = 800 + radius;
 		spawnY = rand() % 600;
-		speedX = 0 - (double)(rand() % 10) + 1;
-		speedY = (double)(rand() % 11) - 5;
+		speedX = 0 - (double)(rand() % 3) + 2;
+		speedY = (double)(rand() % 9) - 4;
 		break;
 	}
 
 	// Scale down numbers so they move at normal speed 
-	speedX = speedX / 10.0;
-	speedY = speedY / 10.0;
+	speedX = speedX / 100.0;
+	speedY = speedY / 100.0;
 
-	monster = new DynamicMonster(0.5, speedX, speedY, radius, spawnX, spawnY);
+	monster = new DynamicMonster(0.01, speedX, speedY, radius, spawnX, spawnY);
 	monsters[numMonsters] = monster;
 	numMonsters++;
 }

@@ -17,4 +17,6 @@ public:
 
 private:
 	double sizeSpeed;
+	int count;
+	bool increasing;
 };

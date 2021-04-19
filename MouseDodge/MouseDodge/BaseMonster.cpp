@@ -11,14 +11,12 @@ void BaseMonster::Init(double speedX, double speedY, float radius)
 	this->radius = radius;
 
 	circleShape.setRadius(radius);
-	circleShape.setFillColor(sf::Color::White);
 }
 
 void BaseMonster::Update(sf::RenderWindow& window)
 {
 	posX += speedX;
 	posY += speedY;
-	printf("%lf %lf\n", posX, posY);
 	circleShape.setPosition(posX - radius, posY - radius);
 }
 
