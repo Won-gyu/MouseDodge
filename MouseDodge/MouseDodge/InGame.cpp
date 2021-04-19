@@ -24,10 +24,14 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		monsterSpawnTimer = 0;
 	}
 	// Update monsters
+	// suggest(by won-gyu): its array is 100 but seems like there is probability i goes over 100.
+	//			Would you have define a const integer value like #define MAX_MONSTER 100 and replace 100 with MAX_MONSTER
+	//			Also use MAX_MONSTER to break forloop if i goes over MAX_MONSTER
 	for (int i = 0; i < numMonsters; i++)
 	{
 		monsters[i]->Update(window);
 		// Remove if out of bounds
+		// suggest(by won-gyu): can we use window to get width and height?
 		if (!monsters[i]->checkInBounds(800, 600))
 		{
 			RemoveMonster(i);
