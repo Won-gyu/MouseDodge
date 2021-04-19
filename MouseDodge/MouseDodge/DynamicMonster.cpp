@@ -1,10 +1,10 @@
-#include "Global.h"
+#include "DynamicMonster.h"
 
 DynamicMonster::~DynamicMonster()
 {
 }
 
-void DynamicMonster::Init(double sizeSpeed)
+void DynamicMonster::Init(float sizeSpeed)
 {
 	this->sizeSpeed = sizeSpeed;
 	this->increasing = true;
@@ -13,11 +13,9 @@ void DynamicMonster::Init(double sizeSpeed)
 	circleShape.setFillColor(sf::Color::Cyan);
 }
 
-void DynamicMonster::Update(sf::RenderWindow& window)
+void DynamicMonster::OnUpdate()
 {
-	// Do default update tasks
-	BaseMonster::Update(window);
-
+	BaseMonster::OnUpdate();
 	if (increasing)
 	{
 		count++;

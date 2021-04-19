@@ -5,10 +5,15 @@ void InGame::Init()
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
 	textScore.setCharacterSize(40);
+	textHp.setPosition(0, 50);
+	textHp.setFont(Global::commonFont);
+	textHp.setFillColor(sf::Color::White);
+	textHp.setCharacterSize(40);
 	score = 0;
-	UpdateScore();
+	UpdateScoreText();
 
-	hero.Init(100, 10);
+	hero.Init(10, 10);
+	UpdateHpText();
 
 	// Monsters
 	numMonsters = 0;
@@ -18,29 +23,32 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 {
 	// Check spawn timer
 	monsterSpawnTimer += dt;
-	if (monsterSpawnTimer > 1)
+	if (monsterSpawnTimer > 0.3)
 	{
-		SpawnMonster();
+		if (numMonsters < MAX_MONSTERS)
+		{
+			SpawnMonster(window);
+		}
+		else
+		{
+			printf("Max monsters on screen\n");
+		}
 		monsterSpawnTimer = 0;
 	}
+	scoreTimer += dt;
+	if (scoreTimer > 1)
+	{
+		score++;
+		UpdateScoreText();
+		scoreTimer = 0;
+	}
 	// Update monsters
-	// suggest(by won-gyu): its array is 100 but seems like there is probability i goes over 100.
-	//			Would you have define a const integer value like #define MAX_MONSTER 100 and replace 100 with MAX_MONSTER
-	//			Also use MAX_MONSTER to break forloop if i goes over MAX_MONSTER
 	for (int i = 0; i < numMonsters; i++)
 	{
-		monsters[i]->Update(window);
-		// Remove if out of bounds
-		// suggest(by won-gyu): can we use window to get width and height?
-		if (!monsters[i]->checkInBounds(window.getSize().x, window.getSize().y))
-		{
-			RemoveMonster(i);
-		}
+		monsters[i]->Update(window, i);
 	}
 
-	score++;
-	UpdateScore();
-	hero.Update(window);
+	hero.Update(window, monsters);
 }
 
 void InGame::Render(sf::RenderWindow& window)
@@ -53,56 +61,62 @@ void InGame::Render(sf::RenderWindow& window)
 
 	hero.Render(window);
 	window.draw(textScore);
+	window.draw(textHp);
 }
 
-void InGame::UpdateScore()
+void InGame::UpdateScoreText()
 {
-	strScore = "Score: " + std::to_string(score / 100);
+	strScore = "Score: " + std::to_string(score);
 	textScore.setString(strScore);
 }
 
+void InGame::UpdateHpText()
+{
+	strHp = "Hp: " + std::to_string(hero.GetHp());
+	textHp.setString(strHp);
+}
 
-void InGame::SpawnMonster()
+void InGame::SpawnMonster(sf::RenderWindow& window)
 {
 	BaseMonster* monster;
-	int spawnX = 0, spawnY = 0;
-	double speedX = 0.0, speedY = 0.0;
+	float spawnX = 0.0f, spawnY = 0.0f;
+	float speedX = 0.0f, speedY = 0.0f;
 
-	float radius = (double)(rand() % 30) + 10;
+	float radius = (float)(rand() % 30) + 10;
 
 	switch (rand() % 4)
 	{
 	case 0: // Spawn at top
-		spawnX = rand() % 800;
-		spawnY = 0 - radius;
-		speedX = (double)(rand() % 9) - 4;
-		speedY = (double)(rand() % 3) + 2;
+		spawnX = (float)(rand() % window.getSize().x);
+		spawnY = 0.0f - radius;
+		speedX = (float)(rand() % 9) - 4.0f;
+		speedY = (float)(rand() % 3) + 2.0f;
 		break;
 	case 1: // Spawn at bottom
-		spawnX = rand() % 800;
-		spawnY = 600 + radius;
-		speedX = (double)(rand() % 9) - 4;
-		speedY = 0 - (double)(rand() % 3) + 2;
+		spawnX = (float)(rand() % window.getSize().x);
+		spawnY = window.getSize().y + radius;
+		speedX = (float)(rand() % 9) - 4.0f;
+		speedY = 0 - (float)(rand() % 3) + 2.0f;
 		break;
 	case 2: // Spawn at left
-		spawnX = 0 - radius;
-		spawnY = rand() % 600;
-		speedX = (double)(rand() % 3) + 2;
-		speedY = (double)(rand() % 9) - 4;
+		spawnX = 0.0f - radius;
+		spawnY = (float)(rand() % window.getSize().y);
+		speedX = (float)(rand() % 3) + 2.0f;
+		speedY = (float)(rand() % 9) - 4.0f;
 		break;
 	default://3 // Spawn at right
-		spawnX = 800 + radius;
-		spawnY = rand() % 600;
-		speedX = 0 - (double)(rand() % 3) + 2;
-		speedY = (double)(rand() % 9) - 4;
+		spawnX = window.getSize().x + radius;
+		spawnY = (float)(rand() % window.getSize().y);
+		speedX = 0.0f - (float)(rand() % 3) + 2.0f;
+		speedY = (float)(rand() % 9) - 4.0f;
 		break;
 	}
 
 	// Scale down numbers so they move at normal speed 
-	speedX = speedX / 100.0;
-	speedY = speedY / 100.0;
+	speedX = speedX / 100.0f;
+	speedY = speedY / 100.0f;
 
-	monster = new DynamicMonster(0.01, speedX, speedY, radius, spawnX, spawnY);
+	monster = new DynamicMonster(0.01f, speedX, speedY, radius, spawnX, spawnY);
 	monsters[numMonsters] = monster;
 	numMonsters++;
 }
@@ -116,7 +130,17 @@ void InGame::RemoveMonster(int index)
 	{
 		monsters[i] = monsters[i + 1];
 	}
-	monsters[numMonsters] = nullptr; // avoid duplicate at the end after shifting
+	monsters[numMonsters - 1] = nullptr; // avoid duplicate at the end after shifting
 
 	numMonsters--;
+}
+
+void InGame::OnHeroHit()
+{
+	UpdateHpText();
+}
+
+void InGame::OnMonsterDied(int index)
+{
+	RemoveMonster(index);
 }

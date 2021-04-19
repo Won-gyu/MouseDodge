@@ -1,10 +1,10 @@
-#include "Global.h"
+#include "BaseMonster.h"
 
 BaseMonster::~BaseMonster()
 {
 }
 
-void BaseMonster::Init(double speedX, double speedY, float radius)
+void BaseMonster::Init(float speedX, float speedY, float radius)
 {
 	this->speedX = speedX;
 	this->speedY = speedY;
@@ -13,11 +13,22 @@ void BaseMonster::Init(double speedX, double speedY, float radius)
 	circleShape.setRadius(radius);
 }
 
-void BaseMonster::Update(sf::RenderWindow& window)
+void BaseMonster::OnUpdate()
 {
 	posX += speedX;
 	posY += speedY;
 	circleShape.setPosition(posX - radius, posY - radius);
+}
+
+void BaseMonster::Update(sf::RenderWindow& window, int index)
+{
+	OnUpdate();
+	id = index;
+
+	if (!checkInBounds(window.getSize().x, window.getSize().y))
+	{
+		Die();
+	}
 }
 
 void BaseMonster::Render(sf::RenderWindow& window)
@@ -33,4 +44,9 @@ bool BaseMonster::checkInBounds(int windowSizeX, int windowSizeY)
 		return false;
 	}
 	return true;
+}
+
+void BaseMonster::Die()
+{
+	Global::OnMonsterDied(id);
 }

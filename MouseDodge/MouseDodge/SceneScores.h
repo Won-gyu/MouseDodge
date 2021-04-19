@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Global.h"
+#include <SFML/Graphics.hpp>
+#include "SceneScores.h"
 
 class SceneScores
 {

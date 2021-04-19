@@ -12,7 +12,7 @@ void TargetMonster::Init(double targetDuration)
 void TargetMonster::Update(sf::RenderWindow& window)
 {
 	// Do default update tasks
-	BaseMonster::Update(window);
+	//BaseMonster::Update(window);
 
 
 

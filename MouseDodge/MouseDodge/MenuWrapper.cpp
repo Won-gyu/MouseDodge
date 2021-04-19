@@ -1,5 +1,20 @@
 #include "MenuWrapper.h"
 
+InGame& MenuWrapper::GetInGame()
+{
+	return inGame;
+}
+
+SceneScores& MenuWrapper::GetSceneScores()
+{
+	return sceneScores;
+}
+
+SceneCredit& MenuWrapper::GetSceneCredit()
+{
+	return sceneCredit;
+}
+
 void MenuWrapper::Init(sf::RenderWindow* window)
 {
 	Global::menuWrapper = this;
@@ -132,4 +147,9 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 	{
 		window->close();
 	}
+}
+
+void MenuWrapper::OnHeroDied()
+{
+	sceneState = SceneState::SCENE_MENU;
 }

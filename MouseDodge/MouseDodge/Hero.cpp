@@ -1,4 +1,4 @@
-#include "Global.h"
+#include "Hero.h"
 
 Hero::Hero(int hp, float radius)
 {
@@ -17,15 +17,44 @@ void Hero::Init(int hp, float radius)
 	circleShape.setRadius(radius);
 }
 
-void Hero::Update(sf::RenderWindow& window)
+void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 {
 	sf::Vector2i position = sf::Mouse::getPosition(window);
 	posX = (float)position.x;
 	posY = (float)position.y;
 	circleShape.setPosition(posX - radius, posY - radius);
+
+	// 100 -> some const variable
+	for (int i = 0; i < 100; i++)
+	{
+		if (monsters[i] != nullptr && IsCollided(monsters[i]))
+		{
+			hp--;
+			Global::OnHeroHit();
+			monsters[i]->Die();
+		}
+	}
+
+	if (hp <= 0)
+	{
+		Global::OnHeroDied();
+	}
 }
 
 void Hero::Render(sf::RenderWindow& window)
 {
 	window.draw(circleShape);
+}
+
+int Hero::GetHp()
+{
+	return hp;
+}
+
+bool Hero::IsCollided(BaseMonster* monster)
+{
+	float distanceX = posX - monster->GetPosX();
+	float distanceY = posY - monster->GetPosY();
+	float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
+	return distance < (float)(radius + monster->GetRadius());
 }
