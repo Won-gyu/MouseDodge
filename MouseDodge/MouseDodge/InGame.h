@@ -6,6 +6,7 @@
 #include "Global.h"
 #include "Hero.h"
 #include "DynamicMonster.h"
+#include "TargetMonster.h"
 
 #define MAX_MONSTERS 100
 

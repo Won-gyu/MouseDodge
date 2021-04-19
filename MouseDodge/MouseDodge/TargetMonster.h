@@ -5,16 +5,22 @@
 class TargetMonster : public BaseMonster
 {
 public:
-	TargetMonster(double targetDuration = 3, double speedX = 1, double speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
-		BaseMonster(speedX, speedY, radius, posX, posY)
+	TargetMonster(float targetDuration = 3, float speedX = 1, float speedY = 1,
+		MonsterTypes type = MonsterTypes::TARGET, float radius = 10, float posX = 0, float posY = 0) :
+		BaseMonster(speedX, speedY, type, radius, posX, posY)
 	{
 		Init(targetDuration);
 	}
 	~TargetMonster();
 
-	void Init(double targetDuration);
-	void Update(sf::RenderWindow& window);
+	void Init(float targetDuration);
+	void OnUpdate();
+	void updateHeroPosition(float x, float y);
 
 private:
-	double targetDuration;
+	sf::Clock clock;
+
+	float targetDuration;
+	float heroX;
+	float heroY;
 };

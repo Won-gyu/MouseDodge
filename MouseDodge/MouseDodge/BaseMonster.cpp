@@ -4,11 +4,17 @@ BaseMonster::~BaseMonster()
 {
 }
 
-void BaseMonster::Init(float speedX, float speedY, float radius)
+MonsterTypes BaseMonster::getType() const
+{
+	return this->type;
+}
+
+void BaseMonster::Init(float speedX, float speedY, float radius, MonsterTypes type)
 {
 	this->speedX = speedX;
 	this->speedY = speedY;
 	this->radius = radius;
+	this->type = type;
 
 	circleShape.setRadius(radius);
 }

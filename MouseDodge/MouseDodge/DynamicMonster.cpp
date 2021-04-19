@@ -15,7 +15,10 @@ void DynamicMonster::Init(float sizeSpeed)
 
 void DynamicMonster::OnUpdate()
 {
+	// Do default update tasks
 	BaseMonster::OnUpdate();
+
+	// Dynamic update tasks
 	if (increasing)
 	{
 		count++;
