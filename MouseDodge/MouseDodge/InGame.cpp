@@ -84,6 +84,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 
 	float radius = (float)(rand() % 30) + 10;
 
+	// Choose starting location and base speed off of it
 	switch (rand() % 4)
 	{
 	case 0: // Spawn at top
@@ -104,7 +105,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 		speedX = (float)(rand() % 3) + 2.0f;
 		speedY = (float)(rand() % 9) - 4.0f;
 		break;
-	default://3 // Spawn at right
+	case 3: // Spawn at right
 		spawnX = window.getSize().x + radius;
 		spawnY = (float)(rand() % window.getSize().y);
 		speedX = 0.0f - (float)(rand() % 3) + 2.0f;
@@ -115,10 +116,21 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	// Scale down numbers so they move at normal speed 
 	speedX = speedX / 100.0f;
 	speedY = speedY / 100.0f;
-	float speedMultiplier = 1 / ((float)(rand() % 30) + 50.0f);
 
-	//monster = new DynamicMonster(0.01f, speedX, speedY, radius, spawnX, spawnY);
-	monster = new TargetMonster(3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+	// Choose what type of monster to spawn
+	if (rand() % 4 == 0) // 1 in 4 chance
+	{
+		float speedMultiplier = 1 / ((float)(rand() % 20) + 30.0f); // 0.0333 - 0.02
+		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
+		monster = new TargetMonster(3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+	}
+	else
+	{
+		float sizeSpeed = 1 / ((float)(rand() % 120) + 80.0f); // 0.0125 - 0.005
+		monster = new DynamicMonster(sizeSpeed, speedX, speedY, radius, spawnX, spawnY);
+	}
+	
+	// Add monster too list
 	monsters[numMonsters] = monster;
 	numMonsters++;
 }
