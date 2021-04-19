@@ -58,3 +58,9 @@ bool Hero::IsCollided(BaseMonster* monster)
 	float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
 	return distance < (float)(radius + monster->GetRadius());
 }
+
+sf::Vector2f& Hero::getPostition() const
+{
+	sf::Vector2f pos = sf::Vector2f(posX, posY);
+	return pos;
+}

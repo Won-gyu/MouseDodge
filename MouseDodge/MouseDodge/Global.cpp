@@ -18,3 +18,8 @@ void Global::OnMonsterDied(int index)
 {
 	menuWrapper->GetInGame().OnMonsterDied(index);
 }
+
+sf::Vector2f& Global::getHeroPosition()
+{
+	return menuWrapper->GetInGame().getHeroPosition();
+}

@@ -6,9 +6,8 @@ class BaseMonster;
 class DynamicMonster : public BaseMonster
 {
 public:
-	DynamicMonster(float sizeSpeed = 1, float speedX = 1, float speedY = 1,
-		MonsterTypes type = MonsterTypes::DYNAMIC, float radius = 10, float posX = 0, float posY = 0) :
-		BaseMonster(speedX, speedY, type, radius, posX, posY)
+	DynamicMonster(float sizeSpeed = 1, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
+		BaseMonster(speedX, speedY, radius, posX, posY)
 	{
 		Init(sizeSpeed);
 	}

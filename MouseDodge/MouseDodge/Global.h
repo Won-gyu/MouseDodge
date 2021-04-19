@@ -11,4 +11,6 @@ public:
 	static void OnHeroDied();
 	static void OnHeroHit();
 	static void OnMonsterDied(int index);
+
+	static sf::Vector2f& getHeroPosition();
 };

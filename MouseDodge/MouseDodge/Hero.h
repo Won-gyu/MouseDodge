@@ -17,6 +17,8 @@ public:
 
 	int GetHp();
 
+	sf::Vector2f& getPostition() const;
+
 private:
 	bool IsCollided(BaseMonster* monster);
 

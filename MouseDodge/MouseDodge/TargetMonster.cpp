@@ -18,14 +18,17 @@ void TargetMonster::OnUpdate()
 	// Do default update tasks
 	BaseMonster::OnUpdate();
 
-	// Check if the time is up
+	// Only change direction if within the target duration
+	if (clock.getElapsedTime().asSeconds() < targetDuration)
+	{
+		sf::Vector2f heroPos = Global::getHeroPosition();
 
-	// Find vector pointing to hero
+		// Find vector pointing to hero
 
-	// Normalize vector
+		// Normalize vector
 
-	// set speed towards hero
-
+		// set speed towards hero
+	}
 }
 
 void TargetMonster::updateHeroPosition(float x, float y)

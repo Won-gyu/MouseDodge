@@ -5,9 +5,8 @@
 class TargetMonster : public BaseMonster
 {
 public:
-	TargetMonster(float targetDuration = 3, float speedX = 1, float speedY = 1,
-		MonsterTypes type = MonsterTypes::TARGET, float radius = 10, float posX = 0, float posY = 0) :
-		BaseMonster(speedX, speedY, type, radius, posX, posY)
+	TargetMonster(float targetDuration = 3, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
+		BaseMonster(speedX, speedY, radius, posX, posY)
 	{
 		Init(targetDuration);
 	}
@@ -20,7 +19,7 @@ public:
 private:
 	sf::Clock clock;
 
-	float targetDuration;
+	float targetDuration; // seconds
 	float heroX;
 	float heroY;
 };

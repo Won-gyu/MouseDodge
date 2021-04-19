@@ -45,12 +45,6 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 	// Update monsters
 	for (int i = 0; i < numMonsters; i++)
 	{
-		if (monsters[i]->getType() == MonsterTypes::TARGET)
-		{
-			// If it's a target monster tell it the hero's position before updating
-			TargetMonster* tm = static_cast<TargetMonster*>(monsters[i]);
-			tm->updateHeroPosition(hero.GetPosX(), hero.GetPosY());
-		}
 		monsters[i]->Update(window, i);
 	}
 
@@ -122,7 +116,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	speedX = speedX / 100.0f;
 	speedY = speedY / 100.0f;
 
-	monster = new DynamicMonster(0.01f, speedX, speedY, MonsterTypes::DYNAMIC, radius, spawnX, spawnY);
+	monster = new DynamicMonster(0.01f, speedX, speedY, radius, spawnX, spawnY);
 	monsters[numMonsters] = monster;
 	numMonsters++;
 }
@@ -149,4 +143,9 @@ void InGame::OnHeroHit()
 void InGame::OnMonsterDied(int index)
 {
 	RemoveMonster(index);
+}
+
+sf::Vector2f& InGame::getHeroPosition() const
+{
+	return hero.getPostition();
 }

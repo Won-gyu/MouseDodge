@@ -20,6 +20,8 @@ public:
 	void OnHeroHit();
 	void OnMonsterDied(int index);
 
+	sf::Vector2f& getHeroPosition() const;
+
 private:
 	void UpdateScoreText();
 	void UpdateHpText();
