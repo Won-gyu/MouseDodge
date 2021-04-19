@@ -5,21 +5,19 @@
 class TargetMonster : public BaseMonster
 {
 public:
-	TargetMonster(float targetDuration = 3, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
+	TargetMonster(float targetDuration = 3, float speedMultiplier = 0.02f, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
 		BaseMonster(speedX, speedY, radius, posX, posY)
 	{
-		Init(targetDuration);
+		Init(targetDuration, speedMultiplier);
 	}
 	~TargetMonster();
 
-	void Init(float targetDuration);
+	void Init(float targetDuration, float speedMultiplier);
 	void OnUpdate();
-	void updateHeroPosition(float x, float y);
 
 private:
 	sf::Clock clock;
 
 	float targetDuration; // seconds
-	float heroX;
-	float heroY;
+	float speedMultiplier; // adds a slight randomness to every monster's speed
 };

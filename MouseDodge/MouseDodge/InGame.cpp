@@ -96,7 +96,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 		spawnX = (float)(rand() % window.getSize().x);
 		spawnY = window.getSize().y + radius;
 		speedX = (float)(rand() % 9) - 4.0f;
-		speedY = 0 - (float)(rand() % 3) + 2.0f;
+		speedY = 0.0f - (float)(rand() % 3) + 2.0f;
 		break;
 	case 2: // Spawn at left
 		spawnX = 0.0f - radius;
@@ -115,8 +115,10 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	// Scale down numbers so they move at normal speed 
 	speedX = speedX / 100.0f;
 	speedY = speedY / 100.0f;
+	float speedMultiplier = 1 / ((float)(rand() % 30) + 50.0f);
 
-	monster = new DynamicMonster(0.01f, speedX, speedY, radius, spawnX, spawnY);
+	//monster = new DynamicMonster(0.01f, speedX, speedY, radius, spawnX, spawnY);
+	monster = new TargetMonster(3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	monsters[numMonsters] = monster;
 	numMonsters++;
 }
