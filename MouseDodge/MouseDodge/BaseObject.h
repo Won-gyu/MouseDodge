@@ -16,4 +16,5 @@ public:
 protected:
 	float posX;
 	float posY;
+	float radius;
 };

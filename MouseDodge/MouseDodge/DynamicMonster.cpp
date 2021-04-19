@@ -4,7 +4,7 @@ DynamicMonster::~DynamicMonster()
 {
 }
 
-void DynamicMonster::Init(double sizeSpeed)
+void DynamicMonster::Init(float sizeSpeed)
 {
 	this->sizeSpeed = sizeSpeed;
 	this->increasing = true;

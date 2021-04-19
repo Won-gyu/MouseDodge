@@ -4,7 +4,7 @@ BaseMonster::~BaseMonster()
 {
 }
 
-void BaseMonster::Init(double speedX, double speedY, float radius)
+void BaseMonster::Init(float speedX, float speedY, float radius)
 {
 	this->speedX = speedX;
 	this->speedY = speedY;

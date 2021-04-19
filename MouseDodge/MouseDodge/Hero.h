@@ -17,5 +17,4 @@ private:
 	sf::CircleShape circleShape;
 
 	int hp;
-	float radius;
 };
