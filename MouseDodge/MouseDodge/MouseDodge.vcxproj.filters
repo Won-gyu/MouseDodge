@@ -51,6 +51,12 @@
     <ClCompile Include="InGame.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="BaseMonster.cpp">
+      <Filter>Source Files\InGameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicMonster.cpp">
+      <Filter>Source Files\InGameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuWrapper.h">
@@ -73,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="SceneScores.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMonster.h">
+      <Filter>Header Files\InGameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicMonster.h">
+      <Filter>Header Files\InGameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

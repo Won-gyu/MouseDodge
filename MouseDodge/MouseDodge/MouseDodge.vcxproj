@@ -150,7 +150,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseMonster.cpp" />
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="DynamicMonster.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="InGame.cpp" />
@@ -160,7 +162,9 @@
     <ClCompile Include="SceneScores.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseMonster.h" />
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="DynamicMonster.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="InGame.h" />

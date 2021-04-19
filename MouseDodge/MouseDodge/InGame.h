@@ -11,6 +11,7 @@ public:
 private:
 	void UpdateScore();
 	void SpawnMonster();
+	void RemoveMonster(int index);
 
 	sf::Text textScore;
 	std::string strScore;
@@ -19,4 +20,6 @@ private:
 	Hero hero;
 
 	float monsterSpawnTimer;
+	BaseMonster *monsters[100];
+	int numMonsters;
 };
