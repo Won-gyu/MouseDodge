@@ -32,7 +32,7 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		monsters[i]->Update(window);
 		// Remove if out of bounds
 		// suggest(by won-gyu): can we use window to get width and height?
-		if (!monsters[i]->checkInBounds(800, 600))
+		if (!monsters[i]->checkInBounds(window.getSize().x, window.getSize().y))
 		{
 			RemoveMonster(i);
 		}

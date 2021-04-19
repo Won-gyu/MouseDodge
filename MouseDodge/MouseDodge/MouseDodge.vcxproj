@@ -160,6 +160,7 @@
     <ClCompile Include="MenuWrapper.cpp" />
     <ClCompile Include="SceneCredit.cpp" />
     <ClCompile Include="SceneScores.cpp" />
+    <ClCompile Include="TargetMonster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseMonster.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="MenuWrapper.h" />
     <ClInclude Include="SceneCredit.h" />
     <ClInclude Include="SceneScores.h" />
+    <ClInclude Include="TargetMonster.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
