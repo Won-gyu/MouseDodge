@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Global.h"
+#include "Hero.h"
+#include "DynamicMonster.h"
 class InGame
 {
 public:

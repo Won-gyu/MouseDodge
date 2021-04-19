@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Global.h"
+#include "BaseMonster.h"
 
+class BaseMonster;
 class DynamicMonster : public BaseMonster
 {
 public:

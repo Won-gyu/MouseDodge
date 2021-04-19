@@ -1,4 +1,4 @@
-#include "Global.h"
+#include "BaseMonster.h"
 
 BaseMonster::~BaseMonster()
 {

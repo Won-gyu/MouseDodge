@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Global.h"
+#include "BaseObject.h"
 
+class baseObject;
 class Hero : public BaseObject
 {
 public:

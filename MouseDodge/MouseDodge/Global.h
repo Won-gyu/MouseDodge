@@ -2,10 +2,6 @@
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "BaseObject.h"
-#include "Hero.h"
-#include "BaseMonster.h"
-#include "DynamicMonster.h"
 #include "InGame.h"
 #include "SceneScores.h"
 #include "SceneCredit.h"
