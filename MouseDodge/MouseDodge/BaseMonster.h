@@ -6,7 +6,7 @@ class BaseMonster : public BaseObject
 {
 public:
 	BaseMonster(float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
-		BaseObject(posX, posY)
+		BaseObject(radius, posX, posY)
 	{
 		Init(speedX, speedY, radius);
 	}

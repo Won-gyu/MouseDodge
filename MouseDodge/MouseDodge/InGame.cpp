@@ -18,10 +18,17 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 {
 	// Check spawn timer
 	monsterSpawnTimer += dt;
-	if (monsterSpawnTimer > 1)
+	if (monsterSpawnTimer > 0.3)
 	{
 		SpawnMonster();
 		monsterSpawnTimer = 0;
+	}
+	scoreTimer += dt;
+	if (scoreTimer > 1)
+	{
+		score++;
+		UpdateScore();
+		scoreTimer = 0;
 	}
 	// Update monsters
 	// suggest(by won-gyu): its array is 100 but seems like there is probability i goes over 100.
@@ -38,8 +45,6 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		}
 	}
 
-	score++;
-	UpdateScore();
 	hero.Update(window);
 }
 
@@ -57,7 +62,7 @@ void InGame::Render(sf::RenderWindow& window)
 
 void InGame::UpdateScore()
 {
-	strScore = "Score: " + std::to_string(score / 100);
+	strScore = "Score: " + std::to_string(score);
 	textScore.setString(strScore);
 }
 

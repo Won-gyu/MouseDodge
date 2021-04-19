@@ -19,6 +19,7 @@ private:
 	std::string strScore;
 
 	int score;
+	float scoreTimer;
 	Hero hero;
 
 	float monsterSpawnTimer;
