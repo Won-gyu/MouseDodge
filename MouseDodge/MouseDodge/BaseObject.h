@@ -1,9 +1,6 @@
 #pragma once
 
-//#include "Global.h"
-#include <iostream>
-#include <string>
-#include <SFML/Graphics.hpp>
+#include "Global.h"
 
 class BaseObject
 {

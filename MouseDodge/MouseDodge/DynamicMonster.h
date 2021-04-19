@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseMonster.h"
+#include "Global.h"
 
 class DynamicMonster : public BaseMonster
 {

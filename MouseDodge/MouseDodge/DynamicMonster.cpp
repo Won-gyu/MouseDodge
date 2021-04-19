@@ -1,4 +1,4 @@
-#include "DynamicMonster.h"
+#include "Global.h"
 
 DynamicMonster::~DynamicMonster()
 {
