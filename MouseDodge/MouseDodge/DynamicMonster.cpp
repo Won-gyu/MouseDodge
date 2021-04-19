@@ -13,11 +13,9 @@ void DynamicMonster::Init(float sizeSpeed)
 	circleShape.setFillColor(sf::Color::Cyan);
 }
 
-void DynamicMonster::Update(sf::RenderWindow& window)
+void DynamicMonster::OnUpdate()
 {
-	// Do default update tasks
-	BaseMonster::Update(window);
-
+	BaseMonster::OnUpdate();
 	if (increasing)
 	{
 		count++;

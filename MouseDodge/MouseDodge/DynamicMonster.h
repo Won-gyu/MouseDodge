@@ -14,7 +14,7 @@ public:
 	~DynamicMonster();
 
 	void Init(float sizeSpeed);
-	void Update(sf::RenderWindow& window);
+	void OnUpdate();
 
 private:
 	float sizeSpeed;

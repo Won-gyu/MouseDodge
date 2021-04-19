@@ -1,6 +1,12 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+#include <SFML/Graphics.hpp>
 #include "Global.h"
+#include "SceneScores.h"
+#include "SceneCredit.h"
+#include "InGame.h"
 
 #define MENU_COUNT 4
 
@@ -20,7 +26,6 @@ enum class SceneState
 	SCENE_CREDIT
 };
 
-class Global;
 class MenuWrapper
 {
 public:
@@ -28,6 +33,12 @@ public:
 	void OnEvent(const sf::Event& event);
 	void Update(sf::RenderWindow& window, float& dt);
 	void Render(sf::RenderWindow& window);
+
+	InGame& GetInGame();
+	SceneScores& GetSceneScores();
+	SceneCredit& GetSceneCredit();
+
+	void OnHeroDied();
 
 private:
 	void UpdateMenuColor();

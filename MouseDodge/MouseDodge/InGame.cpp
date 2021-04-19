@@ -36,13 +36,7 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 	//			Also use MAX_MONSTER to break forloop if i goes over MAX_MONSTER
 	for (int i = 0; i < numMonsters; i++)
 	{
-		monsters[i]->Update(window);
-		// Remove if out of bounds
-		// suggest(by won-gyu): can we use window to get width and height?
-		if (!monsters[i]->checkInBounds(800, 600))
-		{
-			RemoveMonster(i);
-		}
+		monsters[i]->Update(window, i);
 	}
 
 	hero.Update(window);
@@ -120,8 +114,16 @@ void InGame::RemoveMonster(int index)
 	for (int i = index; i < numMonsters - 1; i++)
 	{
 		monsters[i] = monsters[i + 1];
+		printf("%d\n", i);
 	}
-	monsters[numMonsters] = nullptr; // avoid duplicate at the end after shifting
+	monsters[numMonsters - 1] = nullptr; // avoid duplicate at the end after shifting
 
 	numMonsters--;
+}
+
+void InGame::OnMonsterDied(int index)
+{
+	// Remove if out of bounds
+	// suggest(by won-gyu): can we use window to get width and height?
+	RemoveMonster(index);
 }
