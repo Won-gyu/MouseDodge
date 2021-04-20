@@ -171,7 +171,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	// Choose what type of monster to spawn
 	if (rand() % 4 == 0) // 1 in 4 chance
 	{
-		float speedMultiplier = 1 / ((float)(rand() % 20) + 30.0f); // 0.0333 - 0.02
+		float speedMultiplier = 1 / ((float)(rand() % 5) + 5.0f); // 0.0333 - 0.02
 		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
 		monster = new TargetMonster(id, 3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
