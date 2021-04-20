@@ -14,6 +14,7 @@ public:
 	~DynamicMonster();
 
 	void Init(float sizeSpeed);
+	//void initSound();
 	void OnUpdate();
 
 private:

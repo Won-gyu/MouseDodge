@@ -13,6 +13,7 @@ public:
 	~TargetMonster();
 
 	void Init(float targetDuration, float speedMultiplier);
+	//void initSound();
 	void OnUpdate();
 
 private:
