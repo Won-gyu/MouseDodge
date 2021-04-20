@@ -12,15 +12,15 @@ void BaseMonster::Init(float speedX, float speedY, float radius)
 
 	circleShape.setRadius(radius);
 
-	initSound();
+	//initSound();
 }
 
-void BaseMonster::initSound()
-{
-	sf::SoundBuffer buffer;
-	buffer.loadFromFile("FastMonster_die.wav");
-	sound.setBuffer(buffer);
-}
+//void BaseMonster::initSound()
+//{
+//	sf::SoundBuffer buffer;
+//	buffer.loadFromFile("FastMonster_die.wav");
+//	sound.setBuffer(buffer);
+//}
 
 void BaseMonster::OnUpdate()
 {
@@ -60,5 +60,5 @@ void BaseMonster::Die()
 	Global::OnMonsterDied(id);
 
 	// Play death sound
-	sound.play();
+	//sound.play();
 }

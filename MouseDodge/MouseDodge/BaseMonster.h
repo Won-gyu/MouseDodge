@@ -2,7 +2,7 @@
 
 #include "Global.h"
 #include "BaseObject.h"
-#include "SFML/Audio.hpp"
+//#include "SFML/Audio.hpp"
 
 class BaseMonster : public BaseObject
 {
@@ -15,7 +15,7 @@ public:
 	~BaseMonster();
 
 	void Init(float speedX, float speedY, float radius);
-	virtual void initSound();
+	//virtual void initSound();
 	void Update(sf::RenderWindow& window, int index);
 	virtual void OnUpdate();
 	virtual void Render(sf::RenderWindow& window);
@@ -26,7 +26,7 @@ protected:
 	bool checkInBounds(int windowSizeX, int windowSizeY);
 
 	sf::CircleShape circleShape;
-	sf::Sound sound;
+	//sf::Sound sound;
 
 	float speedX;
 	float speedY;
