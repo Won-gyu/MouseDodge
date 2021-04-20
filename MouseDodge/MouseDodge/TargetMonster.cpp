@@ -7,7 +7,7 @@ TargetMonster::~TargetMonster()
 void TargetMonster::Init(float targetDuration, float speedMultiplier)
 {
 	this->targetDuration = targetDuration;
-	this->speedMultiplier = speedMultiplier;
+	this->speedMultiplier = speedMultiplier * 1000.0f;
 
 	this->clock.restart();
 	circleShape.setFillColor(sf::Color::Green);

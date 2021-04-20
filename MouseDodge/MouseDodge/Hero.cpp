@@ -51,6 +51,11 @@ int Hero::GetHp()
 	return hp;
 }
 
+void Hero::SetHp(int hp)
+{
+	this->hp = hp;
+}
+
 bool Hero::IsCollided(BaseMonster* monster)
 {
 	float distanceX = posX - monster->GetPosX();

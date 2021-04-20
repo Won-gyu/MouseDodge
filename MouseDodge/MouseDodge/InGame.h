@@ -25,14 +25,19 @@ public:
 private:
 	void UpdateScoreText();
 	void UpdateHpText();
+	void UpdateLevelText();
 	void SpawnMonster(sf::RenderWindow& window);
 	void RemoveMonster(int index);
 	int AssignMonsterId();
 
+	void OnLevelChanged();
+
 	sf::Text textHp;
 	sf::Text textScore;
+	sf::Text textLevel;
 	std::string strHp;
 	std::string strScore;
+	std::string strLevel;
 
 	int level;
 	int score;

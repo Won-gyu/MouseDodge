@@ -7,8 +7,8 @@ BaseMonster::~BaseMonster()
 void BaseMonster::Init(int id, float speedX, float speedY, float radius)
 {
 	this->id = id;
-	this->speedX = speedX;
-	this->speedY = speedY;
+	this->speedX = speedX * 1000.0f;
+	this->speedY = speedY * 1000.0f;
 	this->radius = radius;
 
 	circleShape.setRadius(radius);
@@ -26,8 +26,8 @@ void BaseMonster::initSound()
 
 void BaseMonster::OnUpdate()
 {
-	posX += speedX;
-	posY += speedY;
+	posX += speedX * Global::deltaTime;
+	posY += speedY * Global::deltaTime;
 	circleShape.setPosition(posX - radius, posY - radius);
 }
 

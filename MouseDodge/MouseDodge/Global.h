@@ -7,6 +7,7 @@ class Global
 public:
 	static MenuWrapper* menuWrapper;
 	static sf::Font commonFont;
+	static float deltaTime;
 
 	static void OnHeroDied();
 	static void OnHeroHit();

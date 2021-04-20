@@ -4,16 +4,24 @@ void InGame::Init()
 {
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
-	textScore.setCharacterSize(40);
-	textHp.setPosition(0, 50);
-	textHp.setFont(Global::commonFont);
-	textHp.setFillColor(sf::Color::White);
-	textHp.setCharacterSize(40);
+	textScore.setCharacterSize(20);
 	score = 0;
 	UpdateScoreText();
 
 	hero.Init(10, 10);
+
+	textHp.setPosition(0, 30);
+	textHp.setFont(Global::commonFont);
+	textHp.setFillColor(sf::Color::White);
+	textHp.setCharacterSize(20);
 	UpdateHpText();
+
+	level = 1;
+	textLevel.setPosition(0, 60);
+	textLevel.setFont(Global::commonFont);
+	textLevel.setFillColor(sf::Color::White);
+	textLevel.setCharacterSize(20);
+	UpdateLevelText();
 
 	// Monsters
 	numMonsters = 0;
@@ -21,6 +29,8 @@ void InGame::Init()
 
 void InGame::Update(sf::RenderWindow& window, float& dt)
 {
+	Global::deltaTime = dt;
+
 	// Check spawn timer
 	monsterSpawnTimer += dt;
 	if (monsterSpawnTimer > 0.3)
@@ -35,13 +45,22 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		}
 		monsterSpawnTimer = 0;
 	}
+
 	scoreTimer += dt;
-	if (scoreTimer > 1)
+	if (scoreTimer > 0.1)
 	{
 		score++;
 		UpdateScoreText();
 		scoreTimer = 0;
+
+		int newLevel = 1 + (score / 100);
+		if (level != newLevel)
+		{
+			level = newLevel;
+			OnLevelChanged();
+		}
 	}
+
 	// Update monsters
 	for (int i = 0; i < MAX_MONSTERS; i++)
 	{
@@ -64,6 +83,7 @@ void InGame::Render(sf::RenderWindow& window)
 	hero.Render(window);
 	window.draw(textScore);
 	window.draw(textHp);
+	window.draw(textLevel);
 }
 
 void InGame::UpdateScoreText()
@@ -76,6 +96,21 @@ void InGame::UpdateHpText()
 {
 	strHp = "Hp: " + std::to_string(hero.GetHp());
 	textHp.setString(strHp);
+}
+
+void InGame::UpdateLevelText()
+{
+	strLevel = "Level: " + std::to_string(level);
+	textLevel.setString(strLevel);
+}
+
+void InGame::OnLevelChanged()
+{
+	UpdateLevelText();
+
+	// reward player the extra hp
+	hero.SetHp(hero.GetHp() + 1);
+	UpdateHpText();
 }
 
 int InGame::AssignMonsterId()
