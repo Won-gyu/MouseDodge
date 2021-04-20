@@ -5,8 +5,8 @@
 class TargetMonster : public BaseMonster
 {
 public:
-	TargetMonster(float targetDuration = 3, float speedMultiplier = 0.02f, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
-		BaseMonster(speedX, speedY, radius, posX, posY)
+	TargetMonster(int id, float targetDuration = 3, float speedMultiplier = 0.02f, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
+		BaseMonster(id, speedX, speedY, radius, posX, posY)
 	{
 		Init(targetDuration, speedMultiplier);
 	}

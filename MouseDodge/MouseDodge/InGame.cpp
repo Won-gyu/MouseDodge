@@ -43,9 +43,10 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		scoreTimer = 0;
 	}
 	// Update monsters
-	for (int i = 0; i < numMonsters; i++)
+	for (int i = 0; i < MAX_MONSTERS; i++)
 	{
-		monsters[i]->Update(window, i);
+		if (monsters[i] != nullptr)
+			monsters[i]->Update(window);
 	}
 
 	hero.Update(window, monsters);
@@ -54,9 +55,10 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 void InGame::Render(sf::RenderWindow& window)
 {
 	// Render monsters
-	for (int i = 0; i < numMonsters; i++)
+	for (int i = 0; i < MAX_MONSTERS; i++)
 	{
-		monsters[i]->Render(window);
+		if (monsters[i] != nullptr)
+			monsters[i]->Render(window);
 	}
 
 	hero.Render(window);
@@ -74,6 +76,18 @@ void InGame::UpdateHpText()
 {
 	strHp = "Hp: " + std::to_string(hero.GetHp());
 	textHp.setString(strHp);
+}
+
+int InGame::AssignMonsterId()
+{
+	for (int i = 0; i < MAX_MONSTERS; i++)
+	{
+		if (monsters[i] == nullptr)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 void InGame::SpawnMonster(sf::RenderWindow& window)
@@ -117,34 +131,37 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	speedX = speedX / 100.0f;
 	speedY = speedY / 100.0f;
 
+	int id = AssignMonsterId();
+
 	// Choose what type of monster to spawn
 	if (rand() % 4 == 0) // 1 in 4 chance
 	{
 		float speedMultiplier = 1 / ((float)(rand() % 20) + 30.0f); // 0.0333 - 0.02
 		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
-		monster = new TargetMonster(3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+		monster = new TargetMonster(id, 3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else
 	{
 		float sizeSpeed = 1 / ((float)(rand() % 120) + 80.0f); // 0.0125 - 0.005
-		monster = new DynamicMonster(sizeSpeed, speedX, speedY, radius, spawnX, spawnY);
+		monster = new DynamicMonster(id, sizeSpeed, speedX, speedY, radius, spawnX, spawnY);
 	}
 	
 	// Add monster too list
-	monsters[numMonsters] = monster;
+	monsters[id] = monster;
 	numMonsters++;
 }
 
 void InGame::RemoveMonster(int index)
 {
 	delete monsters[index];
+	monsters[index] = nullptr;
 
-	// Shift all monsters up in the array
-	for (int i = index; i < numMonsters - 1; i++)
-	{
-		monsters[i] = monsters[i + 1];
-	}
-	monsters[numMonsters - 1] = nullptr; // avoid duplicate at the end after shifting
+	//// Shift all monsters up in the array
+	//for (int i = index; i < numMonsters - 1; i++)
+	//{
+	//	monsters[i] = monsters[i + 1];
+	//}
+	//monsters[numMonsters - 1] = nullptr; // avoid duplicate at the end after shifting
 
 	numMonsters--;
 }

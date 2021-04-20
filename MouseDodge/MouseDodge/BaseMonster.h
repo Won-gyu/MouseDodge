@@ -7,16 +7,16 @@
 class BaseMonster : public BaseObject
 {
 public:
-	BaseMonster(float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
+	BaseMonster(int id = -1, float speedX = 1, float speedY = 1, float radius = 10, float posX = 0, float posY = 0) :
 		BaseObject(radius, posX, posY)
 	{
-		Init(speedX, speedY, radius);
+		Init(id, speedX, speedY, radius);
 	}
 	~BaseMonster();
 
-	void Init(float speedX, float speedY, float radius);
+	void Init(int id, float speedX, float speedY, float radius);
 	virtual void initSound();
-	void Update(sf::RenderWindow& window, int index);
+	void Update(sf::RenderWindow& window);
 	virtual void OnUpdate();
 	virtual void Render(sf::RenderWindow& window);
 
@@ -27,6 +27,7 @@ protected:
 
 	sf::CircleShape circleShape;
 	sf::Sound sound;
+	sf::SoundBuffer soundBuffer;
 
 	float speedX;
 	float speedY;

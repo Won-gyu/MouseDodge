@@ -27,12 +27,14 @@ private:
 	void UpdateHpText();
 	void SpawnMonster(sf::RenderWindow& window);
 	void RemoveMonster(int index);
+	int AssignMonsterId();
 
 	sf::Text textHp;
 	sf::Text textScore;
 	std::string strHp;
 	std::string strScore;
 
+	int level;
 	int score;
 	float scoreTimer;
 	Hero hero;
