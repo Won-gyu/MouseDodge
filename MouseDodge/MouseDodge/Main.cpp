@@ -15,7 +15,12 @@ int main()
 		// handle error
 	}
 
-	if (!Global::titleFont.loadFromFile("CubicalDemoRegular.ttf"))
+	if (!Global::addFont.loadFromFile("MandatoryPlaything-nRRd0.ttf"))
+	{
+		// handle error
+	}
+
+	if (!Global::titleFont.loadFromFile("MandaloreLaserTitle-GOOGy.otf"))
 	{
 		// handle error
 	}

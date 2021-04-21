@@ -21,23 +21,23 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	this->window = window;
 
 	title.setFont(Global::titleFont);
-	title.setFillColor(sf::Color::Blue);
-	title.setCharacterSize(50);
-	title.setPosition(10, 10);
-	title.setString("MOUSE DODGE");
+	title.setFillColor(sf::Color::White);
+	title.setCharacterSize(65);
+	title.setPosition(10, 0);
+	title.setString("Mouse Dodge");
 
 	line.setFont(Global::commonFont);
 	line.setFillColor(sf::Color::White);
 	line.setCharacterSize(20);
-	line.setPosition(5, 60);
-	line.setString("-----------------------------------------------------------");
+	line.setPosition(12, 70);
+	line.setString("--------------------------------------------------------");
 
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
-		text[i].setFont(Global::commonFont);
+		text[i].setFont(Global::addFont);
 		text[i].setFillColor(sf::Color::White);
 		text[i].setCharacterSize(40);
-		text[i].setPosition(5, (float)((i * 50) + 80));
+		text[i].setPosition(10, (float)((i * 50) + 90));
 	}
 
 	text[0].setString("Start Game");
