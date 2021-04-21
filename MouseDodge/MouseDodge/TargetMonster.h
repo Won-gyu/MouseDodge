@@ -16,6 +16,8 @@ public:
 	void OnUpdate();
 
 private:
+	void playDieSound();
+
 	sf::Clock clock;
 
 	float targetDuration; // seconds

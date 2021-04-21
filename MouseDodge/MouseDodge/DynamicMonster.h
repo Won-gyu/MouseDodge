@@ -17,6 +17,8 @@ public:
 	void OnUpdate();
 
 private:
+	void playDieSound();
+
 	float sizeSpeed;
 	int count;
 	bool increasing;

@@ -9,7 +9,10 @@ sf::Sound Global::soundEffects[MAX_SOUND_EFFECT];
 
 void Global::LoadSoundSources()
 {
-	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE].loadFromFile("TargetMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE].loadFromFile("FastMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_DYNAMIC_MONSTER_DIE].loadFromFile("DynamicMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_TARGET_MONSTER_DIE].loadFromFile("TargetMonster_die.wav");
+	//soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE].loadFromFile("TargetMonster_die.wav");
 }
 
 void Global::PlaySoundEffect(const SOUND_SOURCE& soundSource)
@@ -32,6 +35,7 @@ void Global::OnHeroHit()
 
 void Global::OnHeroDied()
 {
+	menuWrapper->GetInGame().OnLeaveGame();
 	menuWrapper->OnHeroDied();
 }
 

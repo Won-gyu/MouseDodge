@@ -39,3 +39,8 @@ void DynamicMonster::OnUpdate()
 	}
 	circleShape.setRadius(radius);
 }
+
+void DynamicMonster::playDieSound()
+{
+	Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_DYNAMIC_MONSTER_DIE);
+}

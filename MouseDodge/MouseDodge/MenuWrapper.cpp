@@ -89,6 +89,11 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 		{
 			if (event.key.code == sf::Keyboard::Escape)
 			{
+				if (sceneState == SceneState::SCENE_GAME)
+				{
+					inGame.OnLeaveGame();
+				}
+
 				sceneState = SceneState::SCENE_MENU;
 			}
 		}

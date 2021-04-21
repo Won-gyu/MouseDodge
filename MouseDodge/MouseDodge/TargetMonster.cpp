@@ -35,3 +35,8 @@ void TargetMonster::OnUpdate()
 		this->speedY = normalizedVector.y * speedMultiplier;
 	}
 }
+
+void TargetMonster::playDieSound()
+{
+	Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_TARGET_MONSTER_DIE);
+}

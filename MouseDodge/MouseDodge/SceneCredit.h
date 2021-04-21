@@ -17,5 +17,10 @@ public:
 	void Render(sf::RenderWindow& window);
 
 private:
+	void resetPositions(sf::RenderWindow& window);
+
 	sf::Text text[CREDIT_COUNT];
+
+	sf::Texture andyTexture;
+	sf::Sprite andySprite;
 };

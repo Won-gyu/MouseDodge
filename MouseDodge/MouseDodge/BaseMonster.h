@@ -28,9 +28,6 @@ protected:
 
 	sf::CircleShape circleShape;
 
-	sf::Sound sound;
-	sf::SoundBuffer soundBuffer;
-
 	float speedX;
 	float speedY;
 	int id;

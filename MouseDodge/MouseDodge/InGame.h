@@ -19,6 +19,7 @@ public:
 
 	void OnHeroHit();
 	void OnMonsterDied(int index);
+	void OnLeaveGame();
 
 	sf::Vector2f& getHeroPosition() const;
 

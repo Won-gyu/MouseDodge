@@ -175,7 +175,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	{
 		float speedMultiplier = 1 / ((float)(rand() % 5) + 5.0f); // 0.02 - 0.0111
 		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
-		float timeTargeting = (0.25f * level) + 2.0f;
+		float timeTargeting = (0.25f * level) + 1.0f;
 		monster = new TargetMonster(id, 3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else
@@ -205,6 +205,17 @@ void InGame::OnHeroHit()
 void InGame::OnMonsterDied(int index)
 {
 	RemoveMonster(index);
+}
+
+void InGame::OnLeaveGame()
+{
+	for (int i = 0; i < MAX_MONSTERS; i++)
+	{
+		if (monsters[i] != nullptr)
+		{
+			monsters[i]->Die(true);
+		}
+	}
 }
 
 sf::Vector2f& InGame::getHeroPosition() const
