@@ -48,6 +48,7 @@ private:
 	int menuState;
 	SceneState sceneState;
 	sf::Text text[MENU_COUNT];
+	sf::Text title;
 
 	InGame inGame;
 	SceneScores sceneScores;
