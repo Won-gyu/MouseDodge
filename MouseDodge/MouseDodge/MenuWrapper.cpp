@@ -20,6 +20,12 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	Global::menuWrapper = this;
 	this->window = window;
 
+	title.setFont(Global::commonFont);
+	title.setFillColor(sf::Color::Cyan);
+	title.setCharacterSize(50);
+	title.setPosition(0, 10);
+	title.setString("MOUSE DODGE\n---------------------");
+
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
 		text[i].setFont(Global::commonFont);
