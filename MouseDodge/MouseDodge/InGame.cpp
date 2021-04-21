@@ -4,16 +4,24 @@ void InGame::Init()
 {
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
-	textScore.setCharacterSize(40);
-	textHp.setPosition(0, 50);
-	textHp.setFont(Global::commonFont);
-	textHp.setFillColor(sf::Color::White);
-	textHp.setCharacterSize(40);
+	textScore.setCharacterSize(20);
 	score = 0;
 	UpdateScoreText();
 
 	hero.Init(10, 10);
+
+	textHp.setPosition(0, 30);
+	textHp.setFont(Global::commonFont);
+	textHp.setFillColor(sf::Color::White);
+	textHp.setCharacterSize(20);
 	UpdateHpText();
+
+	level = 1;
+	textLevel.setPosition(0, 60);
+	textLevel.setFont(Global::commonFont);
+	textLevel.setFillColor(sf::Color::White);
+	textLevel.setCharacterSize(20);
+	UpdateLevelText();
 
 	// Monsters
 	numMonsters = 0;
@@ -21,6 +29,8 @@ void InGame::Init()
 
 void InGame::Update(sf::RenderWindow& window, float& dt)
 {
+	Global::deltaTime = dt;
+
 	// Check spawn timer
 	monsterSpawnTimer += dt;
 	if (monsterSpawnTimer > 0.3)
@@ -35,17 +45,27 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 		}
 		monsterSpawnTimer = 0;
 	}
+
 	scoreTimer += dt;
-	if (scoreTimer > 1)
+	if (scoreTimer > 0.1)
 	{
 		score++;
 		UpdateScoreText();
 		scoreTimer = 0;
+
+		int newLevel = 1 + (score / 100);
+		if (level != newLevel)
+		{
+			level = newLevel;
+			OnLevelChanged();
+		}
 	}
+
 	// Update monsters
-	for (int i = 0; i < numMonsters; i++)
+	for (int i = 0; i < MAX_MONSTERS; i++)
 	{
-		monsters[i]->Update(window, i);
+		if (monsters[i] != nullptr)
+			monsters[i]->Update(window);
 	}
 
 	hero.Update(window, monsters);
@@ -54,14 +74,16 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 void InGame::Render(sf::RenderWindow& window)
 {
 	// Render monsters
-	for (int i = 0; i < numMonsters; i++)
+	for (int i = 0; i < MAX_MONSTERS; i++)
 	{
-		monsters[i]->Render(window);
+		if (monsters[i] != nullptr)
+			monsters[i]->Render(window);
 	}
 
 	hero.Render(window);
 	window.draw(textScore);
 	window.draw(textHp);
+	window.draw(textLevel);
 }
 
 void InGame::UpdateScoreText()
@@ -74,6 +96,33 @@ void InGame::UpdateHpText()
 {
 	strHp = "Hp: " + std::to_string(hero.GetHp());
 	textHp.setString(strHp);
+}
+
+void InGame::UpdateLevelText()
+{
+	strLevel = "Level: " + std::to_string(level);
+	textLevel.setString(strLevel);
+}
+
+void InGame::OnLevelChanged()
+{
+	UpdateLevelText();
+
+	// reward player the extra hp
+	hero.SetHp(hero.GetHp() + 1);
+	UpdateHpText();
+}
+
+int InGame::AssignMonsterId()
+{
+	for (int i = 0; i < MAX_MONSTERS; i++)
+	{
+		if (monsters[i] == nullptr)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 void InGame::SpawnMonster(sf::RenderWindow& window)
@@ -117,34 +166,31 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	speedX = speedX / 100.0f;
 	speedY = speedY / 100.0f;
 
+	int id = AssignMonsterId();
+
 	// Choose what type of monster to spawn
 	if (rand() % 4 == 0) // 1 in 4 chance
 	{
-		float speedMultiplier = 1 / ((float)(rand() % 20) + 30.0f); // 0.0333 - 0.02
+		float speedMultiplier = 1 / ((float)(rand() % 5) + 5.0f); // 0.02 - 0.0111
 		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
-		monster = new TargetMonster(3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+		float timeTargeting = (0.25f * level) + 2.0f;
+		monster = new TargetMonster(id, 3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else
 	{
 		float sizeSpeed = 1 / ((float)(rand() % 120) + 80.0f); // 0.0125 - 0.005
-		monster = new DynamicMonster(sizeSpeed, speedX, speedY, radius, spawnX, spawnY);
+		monster = new DynamicMonster(id, sizeSpeed, speedX, speedY, radius, spawnX, spawnY);
 	}
 	
 	// Add monster too list
-	monsters[numMonsters] = monster;
+	monsters[id] = monster;
 	numMonsters++;
 }
 
 void InGame::RemoveMonster(int index)
 {
 	delete monsters[index];
-
-	// Shift all monsters up in the array
-	for (int i = index; i < numMonsters - 1; i++)
-	{
-		monsters[i] = monsters[i + 1];
-	}
-	monsters[numMonsters - 1] = nullptr; // avoid duplicate at the end after shifting
+	monsters[index] = nullptr;
 
 	numMonsters--;
 }
@@ -157,6 +203,14 @@ void InGame::OnHeroHit()
 void InGame::OnMonsterDied(int index)
 {
 	RemoveMonster(index);
+	sf::Sound sound;
+	sf::SoundBuffer buffer;
+	if (buffer.loadFromFile("FastMonster_die.wav"))
+	{
+		//std::cout << "sound";
+		sound.setBuffer(buffer);
+		sound.play();
+	}
 }
 
 sf::Vector2f& InGame::getHeroPosition() const

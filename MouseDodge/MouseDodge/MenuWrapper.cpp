@@ -25,7 +25,7 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 		text[i].setFont(Global::commonFont);
 		text[i].setFillColor(sf::Color::White);
 		text[i].setCharacterSize(40);
-		text[i].setPosition(0, (float)(i * 50));
+		text[i].setPosition(5, (float)((i * 50) + 110));
 	}
 
 	text[0].setString("Start Game");
@@ -101,6 +101,7 @@ void MenuWrapper::Render(sf::RenderWindow& window)
 	{
 		for (int i = 0; i < MENU_COUNT; i++)
 			window.draw(text[i]);
+		window.draw(title);
 	}
 	else if (sceneState == SceneState::SCENE_GAME)
 	{

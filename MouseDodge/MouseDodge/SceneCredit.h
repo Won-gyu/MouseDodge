@@ -4,7 +4,7 @@
 #include "Global.h"
 #include "SceneCredit.h"
 
-#define CREDIT_COUNT 10
+#define CREDIT_COUNT 9
 
 class SceneCredit
 {

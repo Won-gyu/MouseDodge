@@ -7,18 +7,19 @@ TargetMonster::~TargetMonster()
 void TargetMonster::Init(float targetDuration, float speedMultiplier)
 {
 	this->targetDuration = targetDuration;
-	this->speedMultiplier = speedMultiplier;
+	this->speedMultiplier = speedMultiplier * 1000.0f;
 
 	this->clock.restart();
 	circleShape.setFillColor(sf::Color::Green);
 }
 
-//void TargetMonster::initSound()
-//{
-//	sf::SoundBuffer buffer;
-//	buffer.loadFromFile("TargetMonster_die.wav");
-//	sound.setBuffer(buffer);
-//}
+void TargetMonster::initSound()
+{
+	if (soundBuffer.loadFromFile("TargetMonster_die.wav"))
+	{
+		sound.setBuffer(soundBuffer);
+	}
+}
 
 void TargetMonster::OnUpdate()
 {

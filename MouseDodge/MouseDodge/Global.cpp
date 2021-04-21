@@ -3,6 +3,7 @@
 
 sf::Font Global::commonFont;
 MenuWrapper* Global::menuWrapper = nullptr;
+float Global::deltaTime;
 
 void Global::OnHeroHit()
 {

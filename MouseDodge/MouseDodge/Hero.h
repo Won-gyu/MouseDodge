@@ -16,6 +16,7 @@ public:
 	void Render(sf::RenderWindow& window);
 
 	int GetHp();
+	void SetHp(int hp);
 
 	sf::Vector2f& getPostition() const;
 

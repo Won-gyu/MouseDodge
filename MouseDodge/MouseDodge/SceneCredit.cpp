@@ -15,7 +15,7 @@ void SceneCredit::Init(sf::RenderWindow& window)
 	text[0].setCharacterSize(70);
 	text[1].setString("Credits");
 	text[1].setCharacterSize(60);
-	text[2].setString("Hero -----");
+	text[2].setString("Hero Programmer");
 	text[2].setCharacterSize(40);
 	text[3].setString("Won-gyu Hwang");
 	text[3].setCharacterSize(30);
@@ -23,12 +23,12 @@ void SceneCredit::Init(sf::RenderWindow& window)
 	text[4].setCharacterSize(40);
 	text[5].setString("Scott Van Laar");
 	text[5].setCharacterSize(30);
-	text[6].setString("Monster -----");
+	text[6].setString("Monster Programmer");
 	text[6].setCharacterSize(40);
 	text[7].setString("Zack Harrington");
 	text[7].setCharacterSize(30);
-	text[8].setString("----- Andy -----");
-	text[8].setCharacterSize(40);
+	//text[8].setString("-----  -----");
+	//text[8].setCharacterSize(40);
 
 	// Font, color, origin
 	for (int i = 0; i < CREDIT_COUNT; i++)
@@ -49,7 +49,7 @@ void SceneCredit::Init(sf::RenderWindow& window)
 	text[5].setPosition(window.getSize().x / 2.0f, 350.0f);
 	text[6].setPosition(window.getSize().x / 2.0f, 410.0f);
 	text[7].setPosition(window.getSize().x / 2.0f, 460.0f);
-	text[8].setPosition(window.getSize().x / 2.0f, 520.0f);
+	//text[8].setPosition(window.getSize().x / 2.0f, 520.0f);
 }
 
 void SceneCredit::Update(sf::RenderWindow& window)

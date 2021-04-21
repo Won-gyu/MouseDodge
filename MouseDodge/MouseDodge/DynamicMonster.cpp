@@ -6,19 +6,20 @@ DynamicMonster::~DynamicMonster()
 
 void DynamicMonster::Init(float sizeSpeed)
 {
-	this->sizeSpeed = sizeSpeed;
+	this->sizeSpeed = sizeSpeed * 1000.0f;
 	this->increasing = true;
 	this->count = 0;
 
 	circleShape.setFillColor(sf::Color::Cyan);
 }
 
-//void DynamicMonster::initSound()
-//{
-//	sf::SoundBuffer buffer;
-//	buffer.loadFromFile("DynamicMonster_die.wav");
-//	sound.setBuffer(buffer);
-//}
+void DynamicMonster::initSound()
+{
+	if (soundBuffer.loadFromFile("DynamicMonster_die.wav"))
+	{
+		sound.setBuffer(soundBuffer);
+	}
+}
 
 void DynamicMonster::OnUpdate()
 {
@@ -29,7 +30,7 @@ void DynamicMonster::OnUpdate()
 	if (increasing)
 	{
 		count++;
-		radius += sizeSpeed;
+		radius += sizeSpeed * Global::deltaTime;
 		if (count > 1000)
 		{
 			increasing = false;
@@ -38,7 +39,7 @@ void DynamicMonster::OnUpdate()
 	else
 	{
 		count--;
-		radius -= sizeSpeed;
+		radius -= sizeSpeed * Global::deltaTime;
 		if (count < 0)
 		{
 			increasing = true;

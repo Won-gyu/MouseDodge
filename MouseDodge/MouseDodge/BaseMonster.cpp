@@ -4,35 +4,38 @@ BaseMonster::~BaseMonster()
 {
 }
 
-void BaseMonster::Init(float speedX, float speedY, float radius)
+void BaseMonster::Init(int id, float speedX, float speedY, float radius)
 {
-	this->speedX = speedX;
-	this->speedY = speedY;
+	this->id = id;
+	this->speedX = speedX * 1000.0f;
+	this->speedY = speedY * 1000.0f;
 	this->radius = radius;
 
 	circleShape.setRadius(radius);
 
-	//initSound();
+	initSound();
 }
 
-//void BaseMonster::initSound()
-//{
-//	sf::SoundBuffer buffer;
-//	buffer.loadFromFile("FastMonster_die.wav");
-//	sound.setBuffer(buffer);
-//}
+
+void BaseMonster::initSound()
+{
+	if (soundBuffer.loadFromFile("FastMonster_die.wav"))
+	{
+		sound.setBuffer(soundBuffer);
+	}
+}
+
 
 void BaseMonster::OnUpdate()
 {
-	posX += speedX;
-	posY += speedY;
+	posX += speedX * Global::deltaTime;
+	posY += speedY * Global::deltaTime;
 	circleShape.setPosition(posX - radius, posY - radius);
 }
 
-void BaseMonster::Update(sf::RenderWindow& window, int index)
+void BaseMonster::Update(sf::RenderWindow& window)
 {
 	OnUpdate();
-	id = index;
 
 	if (!checkInBounds(window.getSize().x, window.getSize().y))
 	{
@@ -57,8 +60,8 @@ bool BaseMonster::checkInBounds(int windowSizeX, int windowSizeY)
 
 void BaseMonster::Die()
 {
-	Global::OnMonsterDied(id);
-
 	// Play death sound
-	//sound.play();
+	sound.play();
+
+	Global::OnMonsterDied(id);
 }
