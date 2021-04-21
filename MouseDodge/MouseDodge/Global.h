@@ -17,6 +17,7 @@ class Global
 public:
 	static MenuWrapper* menuWrapper;
 	static sf::Font commonFont;
+	static sf::Font titleFont;
 	static float deltaTime;
 	static sf::SoundBuffer soundEffectBuffers[MAX_SOUND_SOURCE];
 	static sf::Sound soundEffects[MAX_SOUND_EFFECT];

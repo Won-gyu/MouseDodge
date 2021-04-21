@@ -15,6 +15,11 @@ int main()
 		// handle error
 	}
 
+	if (!Global::titleFont.loadFromFile("CubicalDemoRegular.ttf"))
+	{
+		// handle error
+	}
+
 	while (window.isOpen())
 	{
 		float dt = clock.restart().asSeconds();

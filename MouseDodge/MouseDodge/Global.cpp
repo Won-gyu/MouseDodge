@@ -2,6 +2,7 @@
 #include "MenuWrapper.h"
 
 sf::Font Global::commonFont;
+sf::Font Global::titleFont;
 MenuWrapper* Global::menuWrapper = nullptr;
 float Global::deltaTime;
 sf::SoundBuffer Global::soundEffectBuffers[MAX_SOUND_SOURCE];

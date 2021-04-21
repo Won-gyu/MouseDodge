@@ -20,18 +20,24 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	Global::menuWrapper = this;
 	this->window = window;
 
-	title.setFont(Global::commonFont);
-	title.setFillColor(sf::Color::Cyan);
+	title.setFont(Global::titleFont);
+	title.setFillColor(sf::Color::Blue);
 	title.setCharacterSize(50);
-	title.setPosition(0, 10);
-	title.setString("MOUSE DODGE\n---------------------");
+	title.setPosition(10, 10);
+	title.setString("MOUSE DODGE");
+
+	line.setFont(Global::commonFont);
+	line.setFillColor(sf::Color::White);
+	line.setCharacterSize(20);
+	line.setPosition(5, 60);
+	line.setString("-----------------------------------------------------------");
 
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
 		text[i].setFont(Global::commonFont);
 		text[i].setFillColor(sf::Color::White);
 		text[i].setCharacterSize(40);
-		text[i].setPosition(5, (float)((i * 50) + 110));
+		text[i].setPosition(5, (float)((i * 50) + 80));
 	}
 
 	text[0].setString("Start Game");
@@ -113,6 +119,7 @@ void MenuWrapper::Render(sf::RenderWindow& window)
 		for (int i = 0; i < MENU_COUNT; i++)
 			window.draw(text[i]);
 		window.draw(title);
+		window.draw(line);
 	}
 	else if (sceneState == SceneState::SCENE_GAME)
 	{
@@ -133,9 +140,11 @@ void MenuWrapper::UpdateMenuColor()
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
 		text[i].setFillColor(sf::Color::White);
+		text[i].setCharacterSize(40);
 	}
 
 	text[menuState].setFillColor(sf::Color::Green);
+	text[menuState].setCharacterSize(45);
 }
 
 void MenuWrapper::SelectMenu(MenuState menuState)
