@@ -57,7 +57,7 @@ void MenuWrapper::Update(sf::RenderWindow& window, float& dt)
 	}
 	else if (sceneState == SceneState::SCENE_CREDIT)
 	{
-		sceneCredit.Update();
+		sceneCredit.Update(window);
 	}
 }
 
@@ -95,6 +95,11 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 		{
 			if (event.key.code == sf::Keyboard::Escape)
 			{
+				if (sceneState == SceneState::SCENE_GAME)
+				{
+					inGame.OnLeaveGame();
+				}
+
 				sceneState = SceneState::SCENE_MENU;
 			}
 		}
@@ -148,7 +153,7 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 	else if (menuState == MenuState::MENU_CREDIT)
 	{
 		sceneState = SceneState::SCENE_CREDIT;
-		sceneCredit.Init();
+		sceneCredit.Init(*window);
 	}
 	else if (menuState == MenuState::MENU_EXIT)
 	{

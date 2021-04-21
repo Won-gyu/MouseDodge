@@ -14,10 +14,11 @@ public:
 	~DynamicMonster();
 
 	void Init(float sizeSpeed);
-	//void initSound();
 	void OnUpdate();
 
 private:
+	void playDieSound();
+
 	float sizeSpeed;
 	int count;
 	bool increasing;

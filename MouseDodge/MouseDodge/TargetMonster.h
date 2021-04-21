@@ -13,10 +13,11 @@ public:
 	~TargetMonster();
 
 	void Init(float targetDuration, float speedMultiplier);
-	//void initSound();
 	void OnUpdate();
 
 private:
+	void playDieSound();
+
 	sf::Clock clock;
 
 	float targetDuration; // seconds

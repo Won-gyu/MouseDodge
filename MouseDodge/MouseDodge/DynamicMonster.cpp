@@ -13,13 +13,6 @@ void DynamicMonster::Init(float sizeSpeed)
 	circleShape.setFillColor(sf::Color::Cyan);
 }
 
-//void DynamicMonster::initSound()
-//{
-//	sf::SoundBuffer buffer;
-//	buffer.loadFromFile("DynamicMonster_die.wav");
-//	sound.setBuffer(buffer);
-//}
-
 void DynamicMonster::OnUpdate()
 {
 	// Do default update tasks
@@ -45,4 +38,9 @@ void DynamicMonster::OnUpdate()
 		}
 	}
 	circleShape.setRadius(radius);
+}
+
+void DynamicMonster::playDieSound()
+{
+	Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_DYNAMIC_MONSTER_DIE);
 }

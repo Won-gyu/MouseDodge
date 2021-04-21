@@ -25,5 +25,6 @@ private:
 
 	sf::CircleShape circleShape;
 
+	bool isInvincible;
 	int hp;
 };

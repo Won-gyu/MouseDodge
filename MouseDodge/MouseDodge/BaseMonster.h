@@ -15,19 +15,18 @@ public:
 	~BaseMonster();
 
 	void Init(int id, float speedX, float speedY, float radius);
-	virtual void initSound();
 	void Update(sf::RenderWindow& window);
+
 	virtual void OnUpdate();
 	virtual void Render(sf::RenderWindow& window);
 
-	void Die();
+	void Die(bool suicide = false);
 
 protected:
 	bool checkInBounds(int windowSizeX, int windowSizeY);
+	virtual void playDieSound();
 
 	sf::CircleShape circleShape;
-	sf::Sound sound;
-	sf::SoundBuffer soundBuffer;
 
 	float speedX;
 	float speedY;

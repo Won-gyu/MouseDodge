@@ -13,13 +13,6 @@ void TargetMonster::Init(float targetDuration, float speedMultiplier)
 	circleShape.setFillColor(sf::Color::Green);
 }
 
-//void TargetMonster::initSound()
-//{
-//	sf::SoundBuffer buffer;
-//	buffer.loadFromFile("TargetMonster_die.wav");
-//	sound.setBuffer(buffer);
-//}
-
 void TargetMonster::OnUpdate()
 {
 	// Do default update tasks
@@ -41,4 +34,9 @@ void TargetMonster::OnUpdate()
 		this->speedX = normalizedVector.x * speedMultiplier;
 		this->speedY = normalizedVector.y * speedMultiplier;
 	}
+}
+
+void TargetMonster::playDieSound()
+{
+	Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_TARGET_MONSTER_DIE);
 }
