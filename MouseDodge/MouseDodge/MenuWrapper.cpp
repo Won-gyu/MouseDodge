@@ -20,8 +20,10 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	Global::menuWrapper = this;
 	this->window = window;
 
+	sf::Color titleColor(0, 240, 255);
+
 	title.setFont(Global::titleFont);
-	title.setFillColor(sf::Color::White);
+	title.setFillColor(titleColor);
 	title.setCharacterSize(65);
 	title.setPosition(10, 0);
 	title.setString("Mouse Dodge");
@@ -30,7 +32,7 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	line.setFillColor(sf::Color::White);
 	line.setCharacterSize(20);
 	line.setPosition(12, 70);
-	line.setString("--------------------------------------------------------");
+	line.setString("-----------------------------------------------------------");
 
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
@@ -137,13 +139,15 @@ void MenuWrapper::Render(sf::RenderWindow& window)
 
 void MenuWrapper::UpdateMenuColor()
 {
+	sf::Color selectColor(0, 255, 80);
+
 	for (int i = 0; i < MENU_COUNT; i++)
 	{
 		text[i].setFillColor(sf::Color::White);
 		text[i].setCharacterSize(40);
 	}
 
-	text[menuState].setFillColor(sf::Color::Green);
+	text[menuState].setFillColor(selectColor);
 	text[menuState].setCharacterSize(45);
 }
 
