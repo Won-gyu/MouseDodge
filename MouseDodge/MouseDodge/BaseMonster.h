@@ -20,11 +20,11 @@ public:
 	virtual void OnUpdate();
 	virtual void Render(sf::RenderWindow& window);
 
-	void Die();
+	void Die(bool suicide = false);
 
 protected:
 	bool checkInBounds(int windowSizeX, int windowSizeY);
-	virtual void initSound();
+	virtual void playDieSound();
 
 	sf::CircleShape circleShape;
 

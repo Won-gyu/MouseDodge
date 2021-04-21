@@ -16,8 +16,6 @@ public:
 	void OnUpdate();
 
 private:
-	void initSound();
-
 	sf::Clock clock;
 
 	float targetDuration; // seconds

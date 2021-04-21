@@ -13,14 +13,6 @@ void TargetMonster::Init(float targetDuration, float speedMultiplier)
 	circleShape.setFillColor(sf::Color::Green);
 }
 
-void TargetMonster::initSound()
-{
-	if (soundBuffer.loadFromFile("TargetMonster_die.wav"))
-	{
-		sound.setBuffer(soundBuffer);
-	}
-}
-
 void TargetMonster::OnUpdate()
 {
 	// Do default update tasks

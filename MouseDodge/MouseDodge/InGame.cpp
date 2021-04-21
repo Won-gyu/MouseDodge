@@ -2,6 +2,8 @@
 
 void InGame::Init()
 {
+	Global::LoadSoundSources();
+
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
 	textScore.setCharacterSize(20);
@@ -203,14 +205,6 @@ void InGame::OnHeroHit()
 void InGame::OnMonsterDied(int index)
 {
 	RemoveMonster(index);
-	sf::Sound sound;
-	sf::SoundBuffer buffer;
-	if (buffer.loadFromFile("FastMonster_die.wav"))
-	{
-		//std::cout << "sound";
-		sound.setBuffer(buffer);
-		sound.play();
-	}
 }
 
 sf::Vector2f& InGame::getHeroPosition() const

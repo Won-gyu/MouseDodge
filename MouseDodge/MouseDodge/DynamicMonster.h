@@ -17,8 +17,6 @@ public:
 	void OnUpdate();
 
 private:
-	void initSound();
-
 	float sizeSpeed;
 	int count;
 	bool increasing;
