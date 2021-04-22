@@ -4,10 +4,11 @@ TargetMonster::~TargetMonster()
 {
 }
 
-void TargetMonster::Init(float targetDuration, float speedMultiplier, float speedX, float speedY)
+void TargetMonster::Init(float maxSteeringAdjustment, float targetDuration, float speedMultiplier, float speedX, float speedY)
 {
 	this->targetDuration = targetDuration;
 	this->speedMultiplier = speedMultiplier * 1000.0f;
+	this->maxSteeringAdjustment = maxSteeringAdjustment;
 
 	float length = sqrt(pow(speedX, 2) + pow(speedY, 2));
 	sf::Vector2f normDirectionVector(speedX / length, speedY / length);
@@ -39,14 +40,22 @@ void TargetMonster::OnUpdate()
 		float steeringMagnitude = sqrt(pow(steeringVector.x, 2) + pow(steeringVector.y, 2));
 
 		// Adjust master direction vector
-		if (steeringMagnitude > MAX_STEERING_ADJUSTMENT)
+		if (steeringMagnitude > maxSteeringAdjustment)
 		{
 			// Constrain steering, normalize and only add vector of magnitude equal to the maximum allowed
 			sf::Vector2f normSteeringVector(steeringVector.x / steeringMagnitude, steeringVector.y / steeringMagnitude);
-			sf::Vector2f addVector(normSteeringVector.x * MAX_STEERING_ADJUSTMENT, normSteeringVector.y * MAX_STEERING_ADJUSTMENT);
+			sf::Vector2f addVector(normSteeringVector.x * maxSteeringAdjustment, normSteeringVector.y * maxSteeringAdjustment);
 
 			// Add to current direction vector
 			directionVector = sf::Vector2f(directionVector.x + addVector.x, directionVector.y + addVector.y);
+
+			// Make sure direction vector isn't 0 so they at least move in the
+			// event their target duration runs out as they are turning around
+			if (sqrt(pow(directionVector.x, 2) + pow(directionVector.y, 2)) == 0)
+			{
+				// Add again to current direction vector
+				directionVector = sf::Vector2f(directionVector.x + addVector.x, directionVector.y + addVector.y);
+			}
 		}
 		else
 		{

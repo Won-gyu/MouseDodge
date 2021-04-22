@@ -133,7 +133,10 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	float spawnX = 0.0f, spawnY = 0.0f;
 	float speedX = 0.0f, speedY = 0.0f;
 
-	float radius = (float)(rand() % 30) + 10;
+	// Allows for change in screen size
+	float screenMultiplier = window.getSize().x / 800.0f;
+
+	float radius = ((float)(rand() % 30) + 10) * screenMultiplier;
 
 	// Choose starting location and base speed off of it
 	switch (rand() % 4)
@@ -165,18 +168,19 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	}
 
 	// Scale down numbers so they move at normal speed 
-	speedX = speedX / 100.0f;
-	speedY = speedY / 100.0f;
+	speedX = (speedX / 100.0f) * screenMultiplier;
+	speedY = (speedY / 100.0f) * screenMultiplier;
 
 	int id = AssignMonsterId();
 
 	// Choose what type of monster to spawn
 	if (rand() % 4 == 0) // 1 in 4 chance
 	{
-		float speedMultiplier = 1 / ((float)(rand() % 5) + 6.0f); // 0.0167 - 0.01
-		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
-		float timeTargeting = (0.25f * level) + 1.0f;
-		monster = new TargetMonster(id, timeTargeting, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+		float speedMultiplier = (1 / ((float)(rand() % 5) + 6.0f)) * screenMultiplier; // 0.0167 - 0.01
+		radius += (5.0f * screenMultiplier); // they seemed a little small with the same radius as Dynamic
+		float timeTargeting = (0.25f * level) + 1.5f;
+		float maxSteeringAdjustment = 0.001 * screenMultiplier;
+		monster = new TargetMonster(id, maxSteeringAdjustment, timeTargeting, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else
 	{
