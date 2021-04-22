@@ -13,7 +13,7 @@ public:
 	~SceneCredit();
 
 	void Init(sf::RenderWindow& window);
-	void Update(sf::RenderWindow& window);
+	void Update(sf::RenderWindow& window, float& dt);
 	void Render(sf::RenderWindow& window);
 
 private:

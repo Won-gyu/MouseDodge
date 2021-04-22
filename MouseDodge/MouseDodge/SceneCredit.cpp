@@ -51,17 +51,17 @@ void SceneCredit::Init(sf::RenderWindow& window)
 	resetPositions(window);
 }
 
-void SceneCredit::Update(sf::RenderWindow& window)
+void SceneCredit::Update(sf::RenderWindow& window, float& dt)
 {
 	float newY = 0.0f;
 	for (int i = 0; i < CREDIT_COUNT; i++)
 	{
-		newY = text[i].getPosition().y - 0.01;
+		newY = text[i].getPosition().y - 30.0f * dt;
 		text[i].setPosition(text[i].getPosition().x, newY);
 	}
 
-	newY = andySprite.getPosition().y - 0.01;
-	if (newY < 0.0f - andySprite.getTextureRect().height - 10.0f)
+	newY = andySprite.getPosition().y - 30.0f * dt;
+	if (newY < - andySprite.getTextureRect().height - 20.0f)
 	{
 		resetPositions(window);
 	}
