@@ -35,8 +35,7 @@ void TargetMonster::OnUpdate()
 		sf::Vector2f normalizedVector(difVector.x / distance, difVector.y / distance);
 
 		// Find steering vector (difference of direction and one pointing to hero) and magnitude
-		sf::Vector2f steeringVector(0.0f - directionVector.x + normalizedVector.x,
-			0.0f - directionVector.y + normalizedVector.y);
+		sf::Vector2f steeringVector(normalizedVector.x - directionVector.x, normalizedVector.y - directionVector.y);
 		float steeringMagnitude = sqrt(pow(steeringVector.x, 2) + pow(steeringVector.y, 2));
 
 		// Adjust master direction vector
