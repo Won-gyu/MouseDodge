@@ -10,14 +10,14 @@ void BST::insert(const int newData)
 	insert(this->pRoot, newData);
 }
 
-void BST::inOrderTraversal()
-{
-	inOrderTraversal(this->pRoot);
-}
-
 void BST::printToFile()
 {
 	printToFile(this->pRoot);
+}
+
+void BST::populateFromFile()
+{
+	populateFromFile(this->pRoot);
 }
 
 void BST::insert(Node* pTree, const int newData)
@@ -62,22 +62,32 @@ void BST::insert(Node* pTree, const int newData)
 	}
 }
 
-void BST::inOrderTraversal(Node* pTree)
-{
-	if (pTree != nullptr)
-	{
-		inOrderTraversal(pTree->getLeft());
-		std::cout << pTree->getData() << std::endl;
-		inOrderTraversal(pTree->getRight());
-	}
-}
-
 void BST::printToFile(Node* pTree)
 {
+	outputFile.open("ranks.txt");
 
+	if (pTree != nullptr)
+	{
+		printToFile(pTree->getLeft());
+		outputFile << pTree->getData() << std::endl;
+		printToFile(pTree->getRight());
+	}
+
+	outputFile.close();
 }
 
-void populateFromFile()
+void BST::populateFromFile(Node* pTree)
 {
+	inputFile.open("ranks.txt");
+	int num;
+	string temp;
 
+	while (!inputFile.eof())
+	{
+		getline(inputFile, temp);
+		num = stoi(temp);
+		insert(num);
+	}
+
+	inputFile.close();
 }

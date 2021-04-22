@@ -18,17 +18,17 @@ public:
 	BST();
 
 	void insert(const int newData);
-	void inOrderTraversal();
+	//void inOrderTraversal();
 	void printToFile();
+	void populateFromFile();
 
 private:
 	Node* pRoot;
+	ifstream inputFile;
+	ofstream outputFile;
 	void insert(Node* pTree, const int newData);
-	void inOrderTraversal(Node* pTree);
+	//void inOrderTraversal(Node* pTree);
 	void printToFile(Node* pTree);
+	void populateFromFile(Node* pTree);
 };
 
-void populateFromFile();
-
-
-// Implement tree sort
