@@ -14,7 +14,10 @@ void Hero::Init(int hp, float radius)
 {
 	this->hp = hp;
 	this->radius = radius;
-	circleShape.setRadius(radius);
+	for (int i = 0; i < MAX_HERO_TAILS + 1; i++)
+	{
+		circleShapes[i].setRadius(radius);
+	}
 }
 
 void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
@@ -22,7 +25,22 @@ void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 	sf::Vector2i position = sf::Mouse::getPosition(window);
 	posX = (float)position.x;
 	posY = (float)position.y;
-	circleShape.setPosition(posX - radius, posY - radius);
+	circleShapes[0].setPosition(posX - radius, posY - radius);
+	for (int i = 0; i < MAX_HERO_TAILS; i++)
+	{
+		if (hp > i)
+		{
+			if (i == 0)
+			{
+				InterpolateTailPos(tailsPosX[i], tailsPosY[i], posX, posY, tailsPosX[i], tailsPosY[i]);
+			}
+			else
+			{
+				InterpolateTailPos(tailsPosX[i], tailsPosY[i], tailsPosX[i - 1], tailsPosY[i - 1], tailsPosX[i], tailsPosY[i]);
+			}
+			circleShapes[i + 1].setPosition(tailsPosX[i] - radius, tailsPosY[i] - radius);
+		}
+	}
 
 	// 100 -> some const variable
 	for (int i = 0; i < 100; i++)
@@ -43,7 +61,13 @@ void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 
 void Hero::Render(sf::RenderWindow& window)
 {
-	window.draw(circleShape);
+	for (int i = 0; i < MAX_HERO_TAILS + 1; i++)
+	{
+		if (hp > i)
+		{
+			window.draw(circleShapes[i]);
+		}
+	}
 }
 
 int Hero::GetHp()
@@ -56,12 +80,45 @@ void Hero::SetHp(int hp)
 	this->hp = hp;
 }
 
+
 bool Hero::IsCollided(BaseMonster* monster)
 {
-	float distanceX = posX - monster->GetPosX();
-	float distanceY = posY - monster->GetPosY();
-	float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
+	float distanceX;
+	float distanceY;
+	float distance;
+
+	for (int i = 0; i < MAX_HERO_TAILS; i++)
+	{
+		if (hp > i)
+		{
+			distanceX = tailsPosX[i] - monster->GetPosX();
+			distanceY = tailsPosY[i] - monster->GetPosY();
+			distance = sqrt(distanceX * distanceX + distanceY * distanceY);
+			if (distance < (float)(radius + monster->GetRadius()))
+			{
+				return true;
+			}
+		}
+	}
+	distanceX = posX - monster->GetPosX();
+	distanceY = posY - monster->GetPosY();
+	distance = sqrt(distanceX * distanceX + distanceY * distanceY);
 	return distance < (float)(radius + monster->GetRadius());
+}
+
+void Hero::InterpolateTailPos(float& tailPosX, float& tailPosY, float& targetPosX, float& targetPosY, float& retPosX, float& retPosY)
+{
+	float distX = tailPosX - targetPosX;
+	float distY = tailPosY - targetPosY;
+	float length = sqrt(pow(distX, 2) + pow(distY, 2));
+	if (length > radius * 2.0f)
+	{
+		float normalX = distX / length;
+		float normalY = distY / length;
+
+		retPosX = targetPosX + normalX * radius * 2.0f;
+		retPosY = targetPosY + normalY * radius * 2.0f;
+	}
 }
 
 sf::Vector2f& Hero::getPostition() const

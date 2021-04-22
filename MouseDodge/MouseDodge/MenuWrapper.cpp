@@ -65,7 +65,7 @@ void MenuWrapper::Update(sf::RenderWindow& window, float& dt)
 	}
 	else if (sceneState == SceneState::SCENE_CREDIT)
 	{
-		sceneCredit.Update(window);
+		sceneCredit.Update(window, dt);
 	}
 }
 
