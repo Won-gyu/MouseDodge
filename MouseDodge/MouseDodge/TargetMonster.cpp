@@ -10,8 +10,8 @@ void TargetMonster::Init(float targetDuration, float speedMultiplier, float spee
 	this->speedMultiplier = speedMultiplier * 1000.0f;
 
 	float length = sqrt(pow(speedX, 2) + pow(speedY, 2));
-	sf::Vector2f normalizedVector(speedX / length, speedY / length);
-	directionVector = normalizedVector;
+	sf::Vector2f normDirectionVector(speedX / length, speedY / length);
+	directionVector = normDirectionVector;
 
 	this->clock.restart();
 	circleShape.setFillColor(sf::Color::Green);
@@ -27,21 +27,21 @@ void TargetMonster::OnUpdate()
 	{
 		sf::Vector2f heroPos = Global::getHeroPosition();
 
-		// Find vector pointing to hero
-		sf::Vector2f difVector(heroPos.x - posX, heroPos.y - posY);
+		// Find vector pointing to hero (Our goal target)
+		sf::Vector2f goalVector(heroPos.x - posX, heroPos.y - posY);
 
 		// Normalize vector
-		float distance = sqrt(pow(difVector.x, 2) + pow(difVector.y, 2));
-		sf::Vector2f normalizedVector(difVector.x / distance, difVector.y / distance);
+		float goalVectorMagnitude = sqrt(pow(goalVector.x, 2) + pow(goalVector.y, 2));
+		sf::Vector2f normGoalVector(goalVector.x / goalVectorMagnitude, goalVector.y / goalVectorMagnitude);
 
 		// Find steering vector (difference of direction and one pointing to hero) and magnitude
-		sf::Vector2f steeringVector(normalizedVector.x - directionVector.x, normalizedVector.y - directionVector.y);
+		sf::Vector2f steeringVector(normGoalVector.x - directionVector.x, normGoalVector.y - directionVector.y);
 		float steeringMagnitude = sqrt(pow(steeringVector.x, 2) + pow(steeringVector.y, 2));
 
 		// Adjust master direction vector
 		if (steeringMagnitude > MAX_STEERING_ADJUSTMENT)
 		{
-			// Constrain steering, normalize and only add vector of magnitude 0.1
+			// Constrain steering, normalize and only add vector of magnitude equal to the maximum allowed
 			sf::Vector2f normSteeringVector(steeringVector.x / steeringMagnitude, steeringVector.y / steeringMagnitude);
 			sf::Vector2f addVector(normSteeringVector.x * MAX_STEERING_ADJUSTMENT, normSteeringVector.y * MAX_STEERING_ADJUSTMENT);
 
@@ -51,7 +51,7 @@ void TargetMonster::OnUpdate()
 		else
 		{
 			// Distance is small enough
-			directionVector = normalizedVector;
+			directionVector = normGoalVector;
 		}
 
 		// Set speed towards hero
