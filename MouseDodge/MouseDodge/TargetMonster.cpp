@@ -4,10 +4,14 @@ TargetMonster::~TargetMonster()
 {
 }
 
-void TargetMonster::Init(float targetDuration, float speedMultiplier)
+void TargetMonster::Init(float targetDuration, float speedMultiplier, float speedX, float speedY)
 {
 	this->targetDuration = targetDuration;
 	this->speedMultiplier = speedMultiplier * 1000.0f;
+
+	float length = sqrt(pow(speedX, 2) + pow(speedY, 2));
+	sf::Vector2f normalizedVector(speedX / length, speedY / length);
+	directionVector = normalizedVector;
 
 	this->clock.restart();
 	circleShape.setFillColor(sf::Color::Green);
@@ -30,9 +34,30 @@ void TargetMonster::OnUpdate()
 		float distance = sqrt(pow(difVector.x, 2) + pow(difVector.y, 2));
 		sf::Vector2f normalizedVector(difVector.x / distance, difVector.y / distance);
 
-		// set speed towards hero
-		this->speedX = normalizedVector.x * speedMultiplier;
-		this->speedY = normalizedVector.y * speedMultiplier;
+		// Find steering vector (difference of direction and one pointing to hero) and magnitude
+		sf::Vector2f steeringVector(0.0f - directionVector.x + normalizedVector.x,
+			0.0f - directionVector.y + normalizedVector.y);
+		float steeringMagnitude = sqrt(pow(steeringVector.x, 2) + pow(steeringVector.y, 2));
+
+		// Adjust master direction vector
+		if (steeringMagnitude > MAX_STEERING_ADJUSTMENT)
+		{
+			// Constrain steering, normalize and only add vector of magnitude 0.1
+			sf::Vector2f normSteeringVector(steeringVector.x / steeringMagnitude, steeringVector.y / steeringMagnitude);
+			sf::Vector2f addVector(normSteeringVector.x * MAX_STEERING_ADJUSTMENT, normSteeringVector.y * MAX_STEERING_ADJUSTMENT);
+
+			// Add to current direction vector
+			directionVector = sf::Vector2f(directionVector.x + addVector.x, directionVector.y + addVector.y);
+		}
+		else
+		{
+			// Distance is small enough
+			directionVector = normalizedVector;
+		}
+
+		// Set speed towards hero
+		this->speedX = directionVector.x * speedMultiplier;
+		this->speedY = directionVector.y * speedMultiplier;
 	}
 }
 

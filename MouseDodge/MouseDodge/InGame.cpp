@@ -148,7 +148,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 		spawnX = (float)(rand() % window.getSize().x);
 		spawnY = window.getSize().y + radius;
 		speedX = (float)(rand() % 9) - 4.0f;
-		speedY = 0.0f - (float)(rand() % 3) + 2.0f;
+		speedY = 0.0f - ((float)(rand() % 3) + 2.0f);
 		break;
 	case 2: // Spawn at left
 		spawnX = 0.0f - radius;
@@ -159,7 +159,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	case 3: // Spawn at right
 		spawnX = window.getSize().x + radius;
 		spawnY = (float)(rand() % window.getSize().y);
-		speedX = 0.0f - (float)(rand() % 3) + 2.0f;
+		speedX = 0.0f - ((float)(rand() % 3) + 2.0f);
 		speedY = (float)(rand() % 9) - 4.0f;
 		break;
 	}
@@ -173,10 +173,10 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	// Choose what type of monster to spawn
 	if (rand() % 4 == 0) // 1 in 4 chance
 	{
-		float speedMultiplier = 1 / ((float)(rand() % 5) + 5.0f); // 0.02 - 0.0111
+		float speedMultiplier = 1 / ((float)(rand() % 5) + 6.0f); // 0.0167 - 0.01
 		radius += 5.0f; // they seemed a little small with the same radius as Dynamic
 		float timeTargeting = (0.25f * level) + 1.0f;
-		monster = new TargetMonster(id, 3.0f, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+		monster = new TargetMonster(id, timeTargeting, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else
 	{
