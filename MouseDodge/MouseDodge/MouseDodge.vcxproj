@@ -152,12 +152,14 @@
   <ItemGroup>
     <ClCompile Include="BaseMonster.cpp" />
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="BST.cpp" />
     <ClCompile Include="DynamicMonster.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuWrapper.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="SceneCredit.cpp" />
     <ClCompile Include="SceneScores.cpp" />
     <ClCompile Include="TargetMonster.cpp" />
@@ -165,14 +167,19 @@
   <ItemGroup>
     <ClInclude Include="BaseMonster.h" />
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="BST.h" />
     <ClInclude Include="DynamicMonster.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="MenuWrapper.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="SceneCredit.h" />
     <ClInclude Include="SceneScores.h" />
     <ClInclude Include="TargetMonster.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ranks.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
