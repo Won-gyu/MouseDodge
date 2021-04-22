@@ -9,6 +9,11 @@ float Global::deltaTime;
 sf::SoundBuffer Global::soundEffectBuffers[MAX_SOUND_SOURCE];
 sf::Sound Global::soundEffects[MAX_SOUND_EFFECT];
 
+sf::Vector2f Global::Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, const float& t)
+{
+	return sf::Vector2f(v1.x + (v2.x - v1.x) * t, v1.y + (v2.y - v1.y) * t);
+}
+
 void Global::LoadSoundSources()
 {
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE].loadFromFile("FastMonster_die.wav");

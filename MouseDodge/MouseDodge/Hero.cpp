@@ -22,9 +22,12 @@ void Hero::Init(int hp, float radius)
 
 void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 {
-	sf::Vector2i position = sf::Mouse::getPosition(window);
-	posX = (float)position.x;
-	posY = (float)position.y;
+	sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+	sf::Vector2f newPosition = Global::Lerp(sf::Vector2f(posX, posY),
+		sf::Vector2f(mousePosition.x, mousePosition.y),
+		Global::deltaTime * 10.0f);
+	posX = newPosition.x;
+	posY = newPosition.y;
 	circleShapes[0].setPosition(posX - radius, posY - radius);
 	for (int i = 0; i < MAX_HERO_TAILS; i++)
 	{

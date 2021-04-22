@@ -23,6 +23,8 @@ public:
 	static sf::SoundBuffer soundEffectBuffers[MAX_SOUND_SOURCE];
 	static sf::Sound soundEffects[MAX_SOUND_EFFECT];
 
+	static sf::Vector2f Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2 , const float& t);
+
 	static void LoadSoundSources();
 	static void PlaySoundEffect(const SOUND_SOURCE& soundSource);
 
