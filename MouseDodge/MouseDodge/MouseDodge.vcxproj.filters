@@ -66,6 +66,9 @@
     <ClCompile Include="BST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FastMonster.cpp">
+      <Filter>Source Files\InGameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuWrapper.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="BST.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FastMonster.h">
+      <Filter>Header Files\InGameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

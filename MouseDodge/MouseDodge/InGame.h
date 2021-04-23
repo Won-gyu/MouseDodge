@@ -7,6 +7,7 @@
 #include "Hero.h"
 #include "DynamicMonster.h"
 #include "TargetMonster.h"
+#include "FastMonster.h"
 
 #define MAX_MONSTERS 100
 

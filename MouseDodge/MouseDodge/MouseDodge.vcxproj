@@ -154,6 +154,7 @@
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="DynamicMonster.cpp" />
+    <ClCompile Include="FastMonster.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="InGame.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="BST.h" />
     <ClInclude Include="DynamicMonster.h" />
+    <ClInclude Include="FastMonster.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="InGame.h" />

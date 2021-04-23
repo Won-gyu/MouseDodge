@@ -174,9 +174,15 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	int id = AssignMonsterId();
 
 	// Choose what type of monster to spawn
-	if (rand() % 4 == 0) // 1 in 4 chance
+	if (rand() % 20 == 0) // 1 in 20 chance
 	{
-		float speedMultiplier = (1 / ((float)(rand() % 5) + 6.0f)) * screenMultiplier; // 0.0167 - 0.01
+		radius = ((float)(rand() % 10) + 10) * screenMultiplier;
+		float speedMultiplier = (1 / ((float)(rand() % 3) + 3.0f)) * screenMultiplier; // 0.33 - 0.2
+		monster = new FastMonster(id, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
+	}
+	else if (rand() % 4 == 0) // 1 in 4 chance
+	{
+		float speedMultiplier = (1 / ((float)(rand() % 5) + 8.0f)) * screenMultiplier; // 0.125 - 0.0833
 		radius += (5.0f * screenMultiplier); // they seemed a little small with the same radius as Dynamic
 		float timeTargeting = (0.25f * level) + 1.5f;
 		float maxSteeringAdjustment = 0.001 * screenMultiplier;

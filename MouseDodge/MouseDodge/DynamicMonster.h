@@ -2,7 +2,6 @@
 
 #include "BaseMonster.h"
 
-class BaseMonster;
 class DynamicMonster : public BaseMonster
 {
 public:
