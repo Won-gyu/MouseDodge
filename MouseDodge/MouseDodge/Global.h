@@ -25,6 +25,7 @@ public:
 	static float deltaTime;
 	static sf::SoundBuffer soundEffectBuffers[MAX_SOUND_SOURCE];
 	static sf::Sound soundEffects[MAX_SOUND_EFFECT];
+	static float screenMultiplier;
 
 	static sf::Vector2f Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2 , const float& t);
 

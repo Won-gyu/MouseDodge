@@ -136,10 +136,7 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	float spawnX = 0.0f, spawnY = 0.0f;
 	float speedX = 0.0f, speedY = 0.0f;
 
-	// Allows for change in screen size
-	float screenMultiplier = window.getSize().x / 800.0f;
-
-	float radius = ((float)(rand() % 30) + 10) * screenMultiplier;
+	float radius = ((float)(rand() % 30) + 10) * Global::screenMultiplier;
 
 	// Choose starting location and base speed off of it
 	switch (rand() % 4)
@@ -171,24 +168,24 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	}
 
 	// Scale down numbers so they move at normal speed 
-	speedX = (speedX / 100.0f) * screenMultiplier;
-	speedY = (speedY / 100.0f) * screenMultiplier;
+	speedX = (speedX / 100.0f) * Global::screenMultiplier;
+	speedY = (speedY / 100.0f) * Global::screenMultiplier;
 
 	int id = AssignMonsterId();
 
 	// Choose what type of monster to spawn
 	if (rand() % 20 == 0) // 1 in 20 chance
 	{
-		radius = ((float)(rand() % 10) + 10) * screenMultiplier;
-		float speedMultiplier = (1 / ((float)(rand() % 3) + 3.0f)) * screenMultiplier; // 0.33 - 0.2
+		radius = ((float)(rand() % 10) + 10) * Global::screenMultiplier;
+		float speedMultiplier = (1 / ((float)(rand() % 3) + 3.0f)) * Global::screenMultiplier; // 0.33 - 0.2
 		monster = new FastMonster(id, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else if (rand() % 4 == 0) // 1 in 4 chance
 	{
-		float speedMultiplier = (1 / ((float)(rand() % 5) + 8.0f)) * screenMultiplier; // 0.125 - 0.0833
-		radius += (5.0f * screenMultiplier); // they seemed a little small with the same radius as Dynamic
+		float speedMultiplier = (1 / ((float)(rand() % 5) + 8.0f)) * Global::screenMultiplier; // 0.125 - 0.0833
+		radius += (5.0f * Global::screenMultiplier); // they seemed a little small with the same radius as Dynamic
 		float timeTargeting = (0.25f * level) + 1.5f;
-		float maxSteeringAdjustment = 0.001 * screenMultiplier;
+		float maxSteeringAdjustment = 0.001 * Global::screenMultiplier;
 		monster = new TargetMonster(id, maxSteeringAdjustment, timeTargeting, speedMultiplier, speedX, speedY, radius, spawnX, spawnY);
 	}
 	else

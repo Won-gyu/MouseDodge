@@ -8,6 +8,7 @@ MenuWrapper* Global::menuWrapper = nullptr;
 float Global::deltaTime;
 sf::SoundBuffer Global::soundEffectBuffers[MAX_SOUND_SOURCE];
 sf::Sound Global::soundEffects[MAX_SOUND_EFFECT];
+float Global::screenMultiplier;
 
 sf::Vector2f Global::Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, const float& t)
 {
