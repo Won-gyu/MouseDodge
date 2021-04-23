@@ -16,19 +16,18 @@ class BST
 {
 public:
 	BST();
+	~BST();
 
 	void insert(const int newData);
-	//void inOrderTraversal();
-	void printToFile();
+	void printToFile(ofstream& outputFile);
 	void populateFromFile();
 
 private:
 	Node* pRoot;
 	ifstream inputFile;
-	ofstream outputFile;
 	void insert(Node* pTree, const int newData);
-	//void inOrderTraversal(Node* pTree);
-	void printToFile(Node* pTree);
+	void printToFile(Node* pTree, ofstream& outputFile);
 	void populateFromFile(Node* pTree);
+	void destroyTree(Node* pTree);
 };
 

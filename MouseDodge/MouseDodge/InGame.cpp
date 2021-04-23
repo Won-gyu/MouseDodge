@@ -232,3 +232,8 @@ sf::Vector2f& InGame::getHeroPosition() const
 {
 	return hero.getPostition();
 }
+
+int InGame::getScore() const
+{
+	return this->score;
+}

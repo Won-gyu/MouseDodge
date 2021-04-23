@@ -5,14 +5,20 @@ BST::BST()
 	this->pRoot = nullptr;
 }
 
+BST::~BST()
+{
+	//destroyTree(this->pRoot);
+	pRoot->~Node();
+}
+
 void BST::insert(const int newData)
 {
 	insert(this->pRoot, newData);
 }
 
-void BST::printToFile()
+void BST::printToFile(ofstream& outputFile)
 {
-	printToFile(this->pRoot);
+	printToFile(this->pRoot, outputFile);
 }
 
 void BST::populateFromFile()
@@ -62,32 +68,44 @@ void BST::insert(Node* pTree, const int newData)
 	}
 }
 
-void BST::printToFile(Node* pTree)
+void BST::printToFile(Node* pTree, ofstream& outputFile)
 {
-	outputFile.open("ranks.txt");
-
-	if (pTree != nullptr)
+	if (pTree != nullptr && outputFile.is_open())
 	{
-		printToFile(pTree->getLeft());
+		printToFile(pTree->getRight(), outputFile);
 		outputFile << pTree->getData() << std::endl;
-		printToFile(pTree->getRight());
+		printToFile(pTree->getLeft(), outputFile);
 	}
-
-	outputFile.close();
 }
 
 void BST::populateFromFile(Node* pTree)
 {
 	inputFile.open("ranks.txt");
-	int num;
-	string temp;
+	int num = 0;
+	string temp = "";
 
-	while (!inputFile.eof())
+	if (inputFile.is_open());
 	{
-		getline(inputFile, temp);
-		num = stoi(temp);
-		insert(num);
+		while (!inputFile.eof())
+		{
+			getline(inputFile, temp);
+			if (temp != "")
+			{
+				num = stoi(temp);
+				insert(num);
+			}
+		}
 	}
 
 	inputFile.close();
+}
+
+void BST::destroyTree(Node* pTree)
+{
+	if (pTree != nullptr)
+	{
+		destroyTree(pTree->getLeft());
+		destroyTree(pTree->getRight());
+		delete pTree;
+	}
 }

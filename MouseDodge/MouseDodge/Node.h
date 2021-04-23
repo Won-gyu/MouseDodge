@@ -18,6 +18,7 @@ class Node
 {
 public:
 	Node(const int newData);
+	~Node();
 
 	int getData() const;
 	Node* getLeft() const;

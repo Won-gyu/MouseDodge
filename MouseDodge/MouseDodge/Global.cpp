@@ -42,6 +42,7 @@ void Global::OnHeroHit()
 
 void Global::OnHeroDied()
 {
+	manageScore();
 	menuWrapper->GetInGame().OnLeaveGame();
 	menuWrapper->OnHeroDied();
 }
@@ -54,4 +55,16 @@ void Global::OnMonsterDied(int index)
 sf::Vector2f& Global::getHeroPosition()
 {
 	return menuWrapper->GetInGame().getHeroPosition();
+}
+
+void Global::manageScore()
+{
+	BST scoreTree;
+	ofstream output;
+	scoreTree.insert(menuWrapper->GetInGame().getScore());
+	scoreTree.populateFromFile();
+	output.open("ranks.txt");
+	scoreTree.printToFile(output);
+	output.close();
+	//scoreTree.~BST();
 }

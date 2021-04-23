@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "SFML/Audio.hpp"
+#include "BST.h"
 
 #define MAX_SOUND_EFFECT 10
 
@@ -32,6 +33,7 @@ public:
 	static void OnHeroDied();
 	static void OnHeroHit();
 	static void OnMonsterDied(int index);
+	static void manageScore();
 
 	static sf::Vector2f& getHeroPosition();
 };

@@ -4,7 +4,13 @@ Node::Node(const int newData)
 {
 	this->score = newData;
 	this->pLeft = nullptr;
-	this->pLeft = nullptr;
+	this->pRight = nullptr;
+}
+
+Node::~Node()
+{
+	delete pLeft;
+	delete pRight;
 }
 
 int Node::getData() const

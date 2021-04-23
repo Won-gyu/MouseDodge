@@ -23,6 +23,7 @@ public:
 	void OnLeaveGame();
 
 	sf::Vector2f& getHeroPosition() const;
+	int getScore() const;
 
 private:
 	void UpdateScoreText();
