@@ -58,6 +58,9 @@ void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 
 	if (hp <= 0)
 	{
+		// Play sound
+		Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_HERO_DIE);
+
 		Global::OnHeroDied();
 	}
 }

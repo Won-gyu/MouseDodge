@@ -113,6 +113,9 @@ void InGame::OnLevelChanged()
 	// reward player the extra hp
 	hero.SetHp(hero.GetHp() + 1);
 	UpdateHpText();
+
+	// Play sound
+	Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_HERO_LEVEL_UP);
 }
 
 int InGame::AssignMonsterId()

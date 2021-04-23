@@ -16,10 +16,12 @@ sf::Vector2f Global::Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2, const 
 
 void Global::LoadSoundSources()
 {
-	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE].loadFromFile("FastMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE].loadFromFile("basic_sound.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_DYNAMIC_MONSTER_DIE].loadFromFile("DynamicMonster_die.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_TARGET_MONSTER_DIE].loadFromFile("TargetMonster_die.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_FAST_MONSTER_DIE].loadFromFile("FastMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_HERO_LEVEL_UP].loadFromFile("level_up.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_HERO_DIE].loadFromFile("Hero_die.wav");
 }
 
 void Global::PlaySoundEffect(const SOUND_SOURCE& soundSource)
