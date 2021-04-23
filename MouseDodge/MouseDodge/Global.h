@@ -5,12 +5,14 @@
 
 #define MAX_SOUND_EFFECT 10
 
-#define MAX_SOUND_SOURCE 4
+#define MAX_SOUND_SOURCE 6
 enum class SOUND_SOURCE {
 	SOUND_SOURCE_MONSTER_DIE, 
 	SOUND_SOURCE_DYNAMIC_MONSTER_DIE, 
 	SOUND_SOURCE_TARGET_MONSTER_DIE,
 	SOUND_SOURCE_FAST_MONSTER_DIE,
+	SOUND_SOURCE_HERO_LEVEL_UP,
+	SOUND_SOURCE_HERO_DIE,
 };
 
 class MenuWrapper;
@@ -24,6 +26,7 @@ public:
 	static float deltaTime;
 	static sf::SoundBuffer soundEffectBuffers[MAX_SOUND_SOURCE];
 	static sf::Sound soundEffects[MAX_SOUND_EFFECT];
+	static float screenMultiplier;
 
 	static sf::Vector2f Lerp(const sf::Vector2f& v1, const sf::Vector2f& v2 , const float& t);
 

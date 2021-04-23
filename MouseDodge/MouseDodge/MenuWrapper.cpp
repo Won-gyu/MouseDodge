@@ -20,6 +20,8 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	Global::menuWrapper = this;
 	this->window = window;
 
+	Global::screenMultiplier = window->getSize().x / 800.0f;
+
 	sf::Color titleColor(0, 240, 255);
 
 	title.setFont(Global::titleFont);
