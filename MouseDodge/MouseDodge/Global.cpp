@@ -4,6 +4,7 @@
 sf::Font Global::commonFont;
 sf::Font Global::titleFont;
 sf::Font Global::addFont;
+sf::Color Global::titleColor;
 MenuWrapper* Global::menuWrapper = nullptr;
 float Global::deltaTime;
 sf::SoundBuffer Global::soundEffectBuffers[MAX_SOUND_SOURCE];

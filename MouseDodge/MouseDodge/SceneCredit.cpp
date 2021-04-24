@@ -34,8 +34,14 @@ void SceneCredit::Init(sf::RenderWindow& window)
 	// Font, color, origin
 	for (int i = 0; i < CREDIT_COUNT; i++)
 	{
-		text[i].setFont(Global::commonFont);
-		text[i].setFillColor(sf::Color::White);
+		if (i == 0) { 
+			text[i].setFont(Global::titleFont);
+			text[i].setFillColor(Global::titleColor);
+		}
+		else { 
+			text[i].setFont(Global::addFont);
+			text[i].setFillColor(sf::Color::White);
+		}
 		// Change origin to center as opposed to top left
 		sf::FloatRect textRect = text[i].getLocalBounds();
 		text[i].setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);

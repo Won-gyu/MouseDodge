@@ -26,6 +26,7 @@ public:
 	static sf::Font commonFont;
 	static sf::Font titleFont;
 	static sf::Font addFont;
+	static sf::Color titleColor;
 	static float deltaTime;
 	static sf::SoundBuffer soundEffectBuffers[MAX_SOUND_SOURCE];
 	static sf::Sound soundEffects[MAX_SOUND_EFFECT];

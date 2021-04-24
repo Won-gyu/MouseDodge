@@ -24,10 +24,10 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 
 	Global::screenMultiplier = window->getSize().x / 800.0f;
 
-	sf::Color titleColor(0, 240, 255);
+	Global::titleColor = sf::Color(0, 240, 255);
 
 	title.setFont(Global::titleFont);
-	title.setFillColor(titleColor);
+	title.setFillColor(Global::titleColor);
 	title.setCharacterSize(65);
 	title.setPosition(10, 0);
 	title.setString("Mouse Dodge");
