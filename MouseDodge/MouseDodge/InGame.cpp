@@ -2,8 +2,6 @@
 
 void InGame::Init()
 {
-	Global::LoadSoundSources();
-
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
 	textScore.setCharacterSize(20);

@@ -23,6 +23,9 @@ void Global::LoadSoundSources()
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_FAST_MONSTER_DIE].loadFromFile("FastMonster_die.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_HERO_LEVEL_UP].loadFromFile("level_up.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_HERO_DIE].loadFromFile("Hero_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MENU_CHANGE].loadFromFile("click.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MENU_START_GAME].loadFromFile("select_game.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_RETURN_TO_MENU].loadFromFile("return_to_menu.wav");
 }
 
 void Global::PlaySoundEffect(const SOUND_SOURCE& soundSource)

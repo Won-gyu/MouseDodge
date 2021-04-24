@@ -20,6 +20,8 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	Global::menuWrapper = this;
 	this->window = window;
 
+	Global::LoadSoundSources();
+
 	Global::screenMultiplier = window->getSize().x / 800.0f;
 
 	sf::Color titleColor(0, 240, 255);
@@ -85,6 +87,8 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 			{
 				if (menuState < MENU_COUNT - 1)
 				{
+					Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_MENU_CHANGE);
+
 					menuState = menuState + 1;
 					UpdateMenuColor();
 				}
@@ -93,6 +97,8 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 			{
 				if (menuState > 0)
 				{
+					Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_MENU_CHANGE);
+
 					menuState = menuState - 1;
 					UpdateMenuColor();
 				}
@@ -107,6 +113,8 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 			{
 				if (sceneState == SceneState::SCENE_GAME)
 				{
+					Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_RETURN_TO_MENU);
+
 					inGame.OnLeaveGame();
 				}
 
@@ -157,6 +165,8 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 {
 	if (menuState == MenuState::MENU_GAME)
 	{
+		Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_MENU_START_GAME);
+
 		sceneState = SceneState::SCENE_GAME;
 		inGame.Init();
 	}
