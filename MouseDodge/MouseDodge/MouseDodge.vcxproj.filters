@@ -69,6 +69,9 @@
     <ClCompile Include="FastMonster.cpp">
       <Filter>Source Files\InGameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuWrapper.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="FastMonster.h">
       <Filter>Header Files\InGameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
