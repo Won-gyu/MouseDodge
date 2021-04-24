@@ -3,7 +3,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1600, 1200), "Mouse Dodge");
+	sf::RenderWindow window(sf::VideoMode(1280, 960), "Mouse Dodge");
 	sf::Event event;
 
 	MenuWrapper menu;
