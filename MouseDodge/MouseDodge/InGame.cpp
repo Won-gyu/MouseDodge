@@ -1,7 +1,17 @@
 #include "InGame.h"
 
-void InGame::Init()
+void InGame::Init(IN_GAME_MODE inGameMode)
 {
+	this->inGameMode = inGameMode;
+	if (inGameMode == IN_GAME_MODE::IN_GAME_MODE_SERVER)
+	{
+		Network::Init(CONNECTION_TYPE::CONNECTION_TYPE_SERVER);
+	}
+	else if (inGameMode == IN_GAME_MODE::IN_GAME_MODE_CLIENT)
+	{
+		Network::Init(CONNECTION_TYPE::CONNECTION_TYPE_CLIENT);
+	}
+
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
 	textScore.setCharacterSize(20);
