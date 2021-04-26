@@ -47,11 +47,11 @@ void Global::OnHeroHit()
 	menuWrapper->GetInGame().OnHeroHit();
 }
 
-void Global::OnHeroDied()
+void Global::OnHeroDied(bool isUser)
 {
 	manageScore();
 	menuWrapper->GetInGame().OnLeaveGame();
-	menuWrapper->OnHeroDied();
+	menuWrapper->OnHeroDied(isUser);
 }
 
 void Global::OnMonsterDied(int index)

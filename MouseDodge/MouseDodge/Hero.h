@@ -10,15 +10,17 @@ class baseObject;
 class Hero : public BaseObject
 {
 public:
-	Hero(int hp = 10, float radius = 20);
+	Hero(int hp = 10, float radius = 20, bool isUser = true);
 	~Hero();
 
-	void Init(int hp, float radius);
+	void Init(int hp, float radius, bool isUser);
 	void Update(sf::RenderWindow& window, BaseMonster* monsters[]);
 	void Render(sf::RenderWindow& window);
 
 	int GetHp();
 	void SetHp(int hp);
+	void SetPosX(float x);
+	void SetPosY(float y);
 
 	void setInvincible(bool newState);
 	void setUsed(bool newUse);
@@ -33,6 +35,7 @@ private:
 	float tailsPosX[MAX_HERO_TAILS];
 	float tailsPosY[MAX_HERO_TAILS];
 
+	bool isUser;
 	bool isInvincible;
 	bool usedInvincible;
 	int hp;
