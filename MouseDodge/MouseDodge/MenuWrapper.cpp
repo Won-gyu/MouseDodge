@@ -47,8 +47,8 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	}
 
 	text[0].setString("Start Game");
-	text[1].setString("Start Game - Server (Work in Progress)");
-	text[2].setString("Start Game - Client (Work in Progress)");
+	text[1].setString("Start Game - Server (Unstable)");
+	text[2].setString("Start Game - Client (Unstable)");
 	text[3].setString("Scores");
 	text[4].setString("Credit");
 	text[5].setString("Exit");
