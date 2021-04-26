@@ -56,6 +56,7 @@ private:
 	int score;
 	float scoreTimer;
 	Hero hero;
+	Hero opponent;
 
 	float monsterSpawnTimer;
 	BaseMonster *monsters[MAX_MONSTERS];

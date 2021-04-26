@@ -207,7 +207,16 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 	}
 }
 
-void MenuWrapper::OnHeroDied()
+void MenuWrapper::OnHeroDied(bool isUser)
 {
 	sceneState = SceneState::SCENE_MENU;
+
+	if (isUser)
+	{
+		printf("You lost\n");
+	}
+	else
+	{
+		printf("You won\n");
+	}
 }

@@ -37,7 +37,7 @@ public:
 	static void LoadSoundSources();
 	static void PlaySoundEffect(const SOUND_SOURCE& soundSource);
 
-	static void OnHeroDied();
+	static void OnHeroDied(bool isUser);
 	static void OnHeroHit();
 	static void OnMonsterDied(int index);
 	static void manageScore();

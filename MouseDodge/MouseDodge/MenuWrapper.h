@@ -40,7 +40,7 @@ public:
 	SceneScores& GetSceneScores();
 	SceneCredit& GetSceneCredit();
 
-	void OnHeroDied();
+	void OnHeroDied(bool isUser);
 
 private:
 	void UpdateMenuColor();
