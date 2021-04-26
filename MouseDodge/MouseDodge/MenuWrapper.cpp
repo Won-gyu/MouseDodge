@@ -65,7 +65,7 @@ void MenuWrapper::Update(sf::RenderWindow& window, float& dt)
 	}
 	else if (sceneState == SceneState::SCENE_SCORES)
 	{
-		sceneScores.Update();
+		sceneScores.Update(window);
 	}
 	else if (sceneState == SceneState::SCENE_CREDIT)
 	{
@@ -102,6 +102,16 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 					menuState = menuState - 1;
 					UpdateMenuColor();
 				}
+			}
+		}
+	}
+	else if (sceneState == SceneState::SCENE_GAME)
+	{
+		if (event.type == sf::Event::MouseButtonReleased)
+		{
+			if (event.mouseButton.button == sf::Mouse::Right)
+			{
+				
 			}
 		}
 	}
@@ -173,7 +183,7 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 	else if (menuState == MenuState::MENU_SCORES)
 	{
 		sceneState = SceneState::SCENE_SCORES;
-		sceneScores.Init();
+		sceneScores.Init(*window);
 	}
 	else if (menuState == MenuState::MENU_CREDIT)
 	{

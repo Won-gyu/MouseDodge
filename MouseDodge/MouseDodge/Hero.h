@@ -20,6 +20,9 @@ public:
 	int GetHp();
 	void SetHp(int hp);
 
+	void setInvincible(bool newState);
+	void setUsed(bool newUse);
+
 	sf::Vector2f& getPostition() const;
 
 private:
@@ -31,5 +34,6 @@ private:
 	float tailsPosY[MAX_HERO_TAILS];
 
 	bool isInvincible;
+	bool usedInvincible;
 	int hp;
 };

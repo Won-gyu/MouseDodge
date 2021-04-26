@@ -26,6 +26,16 @@ void BST::populateFromFile()
 	populateFromFile(this->pRoot);
 }
 
+int BST::getLength() const
+{
+	return this->length;
+}
+
+void BST::setLength(int newLength)
+{
+	this->length = newLength;
+}
+
 void BST::insert(Node* pTree, const int newData)
 {
 	if (pTree == nullptr)
@@ -89,10 +99,11 @@ void BST::populateFromFile(Node* pTree)
 		while (!inputFile.eof())
 		{
 			getline(inputFile, temp);
-			if (temp != "")
+			if (temp.size() > 0)
 			{
 				num = stoi(temp);
 				insert(num);
+				length += 1;
 			}
 		}
 	}

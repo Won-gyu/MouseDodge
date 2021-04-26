@@ -12,6 +12,8 @@ Hero::~Hero()
 
 void Hero::Init(int hp, float radius)
 {
+	this->isInvincible = false;
+	this->usedInvincible = false;
 	this->hp = hp;
 	this->radius = radius;
 	for (int i = 0; i < MAX_HERO_TAILS + 1; i++)
@@ -45,13 +47,18 @@ void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 		}
 	}
 
+
+
 	// 100 -> some const variable
 	for (int i = 0; i < 100; i++)
 	{
 		if (monsters[i] != nullptr && IsCollided(monsters[i]))
 		{
-			hp--;
-			Global::OnHeroHit();
+			if (!isInvincible)
+			{
+				hp--;
+				Global::OnHeroHit();
+			}
 			monsters[i]->Die();
 		}
 	}
@@ -86,6 +93,15 @@ void Hero::SetHp(int hp)
 	this->hp = hp;
 }
 
+void Hero::setInvincible(bool newState)
+{
+	this->isInvincible = newState;
+}
+
+void Hero::setUsed(bool newUse)
+{
+	this->usedInvincible = newUse;
+}
 
 bool Hero::IsCollided(BaseMonster* monster)
 {
