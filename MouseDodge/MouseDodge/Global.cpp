@@ -22,6 +22,8 @@ void Global::LoadSoundSources()
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_DYNAMIC_MONSTER_DIE].loadFromFile("DynamicMonster_die.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_TARGET_MONSTER_DIE].loadFromFile("TargetMonster_die.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_FAST_MONSTER_DIE].loadFromFile("FastMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_TELEPORT_MONSTER_DIE].loadFromFile("TeleportMonster_die.wav");
+	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_TELEPORT_MONSTER_TELEPORT].loadFromFile("TeleportMonster_teleport.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_HERO_LEVEL_UP].loadFromFile("level_up.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_HERO_DIE].loadFromFile("Hero_die.wav");
 	soundEffectBuffers[(int)SOUND_SOURCE::SOUND_SOURCE_MENU_CHANGE].loadFromFile("click.wav");
@@ -36,6 +38,10 @@ void Global::PlaySoundEffect(const SOUND_SOURCE& soundSource)
 		if (soundEffects[i].getStatus() == sf::Sound::SoundSource::Stopped)
 		{
 			soundEffects[i].setBuffer(soundEffectBuffers[(int)soundSource]);
+			if (soundSource == SOUND_SOURCE::SOUND_SOURCE_TELEPORT_MONSTER_TELEPORT)
+			{
+				soundEffects[i].setVolume(25); // (0 - 100)
+			}
 			soundEffects[i].play();
 			break;
 		}

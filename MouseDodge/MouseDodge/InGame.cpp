@@ -172,7 +172,13 @@ void InGame::SpawnMonster(sf::RenderWindow& window)
 	int id = AssignMonsterId();
 
 	// Choose what type of monster to spawn
-	if (rand() % 20 == 0) // 1 in 20 chance
+	if (rand() % 40 == 0) // 1 in 40 chance
+	{
+		speedX = speedX * 2.0f;
+		speedY = speedY * 2.0f;
+		monster = new TeleportMonster(id, speedX, speedY, radius, spawnX, spawnY);
+	}
+	else if (rand() % 18 == 0) // 1 in 18 chance
 	{
 		radius = ((float)(rand() % 10) + 10) * Global::screenMultiplier;
 		float speedMultiplier = (1 / ((float)(rand() % 3) + 3.0f)) * Global::screenMultiplier; // 0.33 - 0.2

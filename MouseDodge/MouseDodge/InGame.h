@@ -8,6 +8,7 @@
 #include "DynamicMonster.h"
 #include "TargetMonster.h"
 #include "FastMonster.h"
+#include "TeleportMonster.h"
 
 #define MAX_MONSTERS 100
 

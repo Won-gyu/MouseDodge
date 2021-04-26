@@ -93,6 +93,10 @@ bool Hero::IsCollided(BaseMonster* monster)
 	float distanceY;
 	float distance;
 
+	if (monster->AllowCollision() == false)
+	{
+		return false;
+	}
 	for (int i = 0; i < MAX_HERO_TAILS; i++)
 	{
 		if (hp > i)

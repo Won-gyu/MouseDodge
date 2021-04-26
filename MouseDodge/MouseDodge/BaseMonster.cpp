@@ -53,6 +53,11 @@ void BaseMonster::playDieSound()
 	Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_MONSTER_DIE);
 }
 
+bool BaseMonster::AllowCollision()
+{
+	return true;
+}
+
 void BaseMonster::Die(bool suicide)
 {
 	// Play death sound

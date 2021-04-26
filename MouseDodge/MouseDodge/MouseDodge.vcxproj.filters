@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{a848c875-6fb1-4380-be27-112f8a06e859}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\InGameObjects\Monsters">
+      <UniqueIdentifier>{6f077725-155a-4cc5-8093-90e486731113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InGameObjects\Monsters">
+      <UniqueIdentifier>{3c3574a9-8856-4700-8bad-4a806a2c8a0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -51,26 +57,29 @@
     <ClCompile Include="InGame.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="BaseMonster.cpp">
-      <Filter>Source Files\InGameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicMonster.cpp">
-      <Filter>Source Files\InGameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="TargetMonster.cpp">
-      <Filter>Source Files\InGameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FastMonster.cpp">
-      <Filter>Source Files\InGameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Network.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TargetMonster.cpp">
+      <Filter>Source Files\InGameObjects\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="FastMonster.cpp">
+      <Filter>Source Files\InGameObjects\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicMonster.cpp">
+      <Filter>Source Files\InGameObjects\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMonster.cpp">
+      <Filter>Source Files\InGameObjects\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="TeleportMonster.cpp">
+      <Filter>Source Files\InGameObjects\Monsters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,26 +104,29 @@
     <ClInclude Include="SceneScores.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="BaseMonster.h">
-      <Filter>Header Files\InGameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicMonster.h">
-      <Filter>Header Files\InGameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="TargetMonster.h">
-      <Filter>Header Files\InGameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BST.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FastMonster.h">
-      <Filter>Header Files\InGameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Network.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetMonster.h">
+      <Filter>Header Files\InGameObjects\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="FastMonster.h">
+      <Filter>Header Files\InGameObjects\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicMonster.h">
+      <Filter>Header Files\InGameObjects\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMonster.h">
+      <Filter>Header Files\InGameObjects\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="TeleportMonster.h">
+      <Filter>Header Files\InGameObjects\Monsters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

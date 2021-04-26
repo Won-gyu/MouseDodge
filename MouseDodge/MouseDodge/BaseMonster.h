@@ -20,6 +20,7 @@ public:
 	virtual void OnUpdate();
 	virtual void Render(sf::RenderWindow& window);
 
+	virtual bool AllowCollision();
 	void Die(bool suicide = false);
 
 protected:
