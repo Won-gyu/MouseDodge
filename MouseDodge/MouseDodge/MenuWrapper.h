@@ -8,11 +8,13 @@
 #include "SceneCredit.h"
 #include "InGame.h"
 
-#define MENU_COUNT 4
+#define MENU_COUNT 6
 
 enum class MenuState
 {
 	MENU_GAME,
+	MENU_GAME_SERVER,
+	MENU_GAME_CLIENT,
 	MENU_SCORES,
 	MENU_CREDIT,
 	MENU_EXIT
@@ -38,7 +40,7 @@ public:
 	SceneScores& GetSceneScores();
 	SceneCredit& GetSceneCredit();
 
-	void OnHeroDied();
+	void OnHeroDied(bool isUser);
 
 private:
 	void UpdateMenuColor();

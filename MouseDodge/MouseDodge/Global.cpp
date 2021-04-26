@@ -40,7 +40,11 @@ void Global::PlaySoundEffect(const SOUND_SOURCE& soundSource)
 			soundEffects[i].setBuffer(soundEffectBuffers[(int)soundSource]);
 			if (soundSource == SOUND_SOURCE::SOUND_SOURCE_TELEPORT_MONSTER_TELEPORT)
 			{
-				soundEffects[i].setVolume(25); // (0 - 100)
+				soundEffects[i].setVolume(30); // (0 - 100)
+			}
+			else
+			{
+				soundEffects[i].setVolume(100);
 			}
 			soundEffects[i].play();
 			break;
@@ -53,11 +57,11 @@ void Global::OnHeroHit()
 	menuWrapper->GetInGame().OnHeroHit();
 }
 
-void Global::OnHeroDied()
+void Global::OnHeroDied(bool isUser)
 {
 	manageScore();
 	menuWrapper->GetInGame().OnLeaveGame();
-	menuWrapper->OnHeroDied();
+	menuWrapper->OnHeroDied(isUser);
 }
 
 void Global::OnMonsterDied(int index)

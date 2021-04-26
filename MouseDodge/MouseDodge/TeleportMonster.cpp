@@ -8,6 +8,7 @@ void TeleportMonster::Init()
 {
 	clock.restart();
 	tpClock.restart();
+	this->secondsUntilTeleport = 3;
 	this->teleporting = false;
 	this->tpX = 0;
 	this->tpY = 0;
@@ -32,9 +33,12 @@ void TeleportMonster::OnUpdate()
 		// Do default update tasks
 		BaseMonster::OnUpdate();
 
-		if (clock.getElapsedTime().asSeconds() > 3.0f)
+		if (clock.getElapsedTime().asSeconds() > secondsUntilTeleport)
 		{
 			teleporting = true;
+			// Increment seconds
+			secondsUntilTeleport++;
+
 			if (rand() % 2 == 0)
 			{
 				tpX = Global::getHeroPosition().x + (2.0f * radius);

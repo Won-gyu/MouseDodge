@@ -26,6 +26,7 @@ private:
 	sf::CircleShape tpCircleShape1;
 	sf::CircleShape tpCircleShape2;
 	
+	int secondsUntilTeleport;
 	bool teleporting;
 	float tpX;
 	float tpY;

@@ -31,7 +31,7 @@ int main()
 		while (window.pollEvent(event))
 		{
 			menu.OnEvent(event);
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed) 
 			{
 				window.close();
 			}

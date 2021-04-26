@@ -21,10 +21,13 @@ public:
 	void insert(const int newData);
 	void printToFile(ofstream& outputFile);
 	void populateFromFile();
+	int getLength() const;
+	void setLength(int newLength);
 
 private:
 	Node* pRoot;
 	ifstream inputFile;
+	int length;
 	void insert(Node* pTree, const int newData);
 	void printToFile(Node* pTree, ofstream& outputFile);
 	void populateFromFile(Node* pTree);

@@ -9,8 +9,8 @@ Node::Node(const int newData)
 
 Node::~Node()
 {
-	delete pLeft;
-	delete pRight;
+	//delete pLeft;
+	//delete pRight;
 }
 
 int Node::getData() const

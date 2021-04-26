@@ -133,5 +133,8 @@
     <Text Include="ranks.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="serverIp.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

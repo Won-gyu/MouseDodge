@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "SceneScores.h"
+#include "Global.h"
 
 class SceneScores
 {
@@ -9,9 +10,11 @@ public:
 	SceneScores();
 	~SceneScores();
 
-	void Init();
-	void Update();
+	void Init(sf::RenderWindow& window);
+	void Update(sf::RenderWindow& window);
 	void Render(sf::RenderWindow& window);
 
 private:
+	sf::Text header;
+
 };

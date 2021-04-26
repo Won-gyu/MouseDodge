@@ -1,14 +1,28 @@
 #include "InGame.h"
 
-void InGame::Init()
+void InGame::Init(IN_GAME_MODE inGameMode)
 {
+	this->inGameMode = inGameMode;
+	if (inGameMode == IN_GAME_MODE::IN_GAME_MODE_SERVER)
+	{
+		Network::Init(CONNECTION_TYPE::CONNECTION_TYPE_SERVER);
+	}
+	else if (inGameMode == IN_GAME_MODE::IN_GAME_MODE_CLIENT)
+	{
+		Network::Init(CONNECTION_TYPE::CONNECTION_TYPE_CLIENT);
+	}
+
 	textScore.setFont(Global::commonFont);
 	textScore.setFillColor(sf::Color::White);
 	textScore.setCharacterSize(20);
 	score = 0;
 	UpdateScoreText();
 
-	hero.Init(10, 10);
+	hero.Init(10, 10, true);
+	if (inGameMode != IN_GAME_MODE::IN_GAME_MODE_SINGLE)
+	{
+		opponent.Init(10, 10, false);
+	}
 
 	textHp.setPosition(0, 30);
 	textHp.setFont(Global::commonFont);
@@ -30,6 +44,11 @@ void InGame::Init()
 void InGame::Update(sf::RenderWindow& window, float& dt)
 {
 	Global::deltaTime = dt;
+
+	if (inGameMode != IN_GAME_MODE::IN_GAME_MODE_SINGLE)
+	{
+		Network::CommunicateHeroPos(hero, opponent);
+	}
 
 	// Check spawn timer
 	monsterSpawnTimer += dt;
@@ -69,6 +88,10 @@ void InGame::Update(sf::RenderWindow& window, float& dt)
 	}
 
 	hero.Update(window, monsters);
+	if (inGameMode != IN_GAME_MODE::IN_GAME_MODE_SINGLE)
+	{
+		opponent.Update(window, monsters);
+	}
 }
 
 void InGame::Render(sf::RenderWindow& window)
@@ -81,6 +104,10 @@ void InGame::Render(sf::RenderWindow& window)
 	}
 
 	hero.Render(window);
+	if (inGameMode != IN_GAME_MODE::IN_GAME_MODE_SINGLE)
+	{
+		opponent.Render(window);
+	}
 	window.draw(textScore);
 	window.draw(textHp);
 	window.draw(textLevel);
@@ -223,6 +250,7 @@ void InGame::OnMonsterDied(int index)
 
 void InGame::OnLeaveGame()
 {
+	Network::CommunicateHeroPos(hero, opponent);
 	for (int i = 0; i < MAX_MONSTERS; i++)
 	{
 		if (monsters[i] != nullptr)

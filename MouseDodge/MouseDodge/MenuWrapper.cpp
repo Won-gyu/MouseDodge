@@ -47,9 +47,11 @@ void MenuWrapper::Init(sf::RenderWindow* window)
 	}
 
 	text[0].setString("Start Game");
-	text[1].setString("Scores");
-	text[2].setString("Credit");
-	text[3].setString("Exit");
+	text[1].setString("Start Game - Server (Unstable)");
+	text[2].setString("Start Game - Client (Unstable)");
+	text[3].setString("Scores");
+	text[4].setString("Credit");
+	text[5].setString("Exit");
 
 	menuState = (int)MenuState::MENU_GAME;
 	UpdateMenuColor();
@@ -65,7 +67,7 @@ void MenuWrapper::Update(sf::RenderWindow& window, float& dt)
 	}
 	else if (sceneState == SceneState::SCENE_SCORES)
 	{
-		sceneScores.Update();
+		sceneScores.Update(window);
 	}
 	else if (sceneState == SceneState::SCENE_CREDIT)
 	{
@@ -102,6 +104,16 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 					menuState = menuState - 1;
 					UpdateMenuColor();
 				}
+			}
+		}
+	}
+	else if (sceneState == SceneState::SCENE_GAME)
+	{
+		if (event.type == sf::Event::MouseButtonReleased)
+		{
+			if (event.mouseButton.button == sf::Mouse::Right)
+			{
+				
 			}
 		}
 	}
@@ -168,12 +180,31 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 		Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_MENU_START_GAME);
 
 		sceneState = SceneState::SCENE_GAME;
-		inGame.Init();
+		inGame.Init(IN_GAME_MODE::IN_GAME_MODE_SINGLE);
+	}
+	else if (menuState == MenuState::MENU_GAME_SERVER)
+	{
+		sceneState = SceneState::SCENE_GAME;
+
+		sf::Text text;
+		text.setFont(Global::addFont);
+		text.setFillColor(sf::Color::White);
+		text.setCharacterSize(40);
+		text.setString("Wait...");
+		window->clear();
+		window->draw(text);
+		window->display();
+		inGame.Init(IN_GAME_MODE::IN_GAME_MODE_SERVER);
+	}
+	else if (menuState == MenuState::MENU_GAME_CLIENT)
+	{
+		sceneState = SceneState::SCENE_GAME;
+		inGame.Init(IN_GAME_MODE::IN_GAME_MODE_CLIENT);
 	}
 	else if (menuState == MenuState::MENU_SCORES)
 	{
 		sceneState = SceneState::SCENE_SCORES;
-		sceneScores.Init();
+		sceneScores.Init(*window);
 	}
 	else if (menuState == MenuState::MENU_CREDIT)
 	{
@@ -186,7 +217,16 @@ void MenuWrapper::SelectMenu(MenuState menuState)
 	}
 }
 
-void MenuWrapper::OnHeroDied()
+void MenuWrapper::OnHeroDied(bool isUser)
 {
 	sceneState = SceneState::SCENE_MENU;
+
+	if (isUser)
+	{
+		printf("You lost\n");
+	}
+	else
+	{
+		printf("You won\n");
+	}
 }

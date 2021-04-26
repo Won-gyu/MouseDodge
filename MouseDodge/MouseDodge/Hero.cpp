@@ -1,8 +1,8 @@
 #include "Hero.h"
 
-Hero::Hero(int hp, float radius)
+Hero::Hero(int hp, float radius, bool isUser)
 {
-	Init(hp, radius);
+	Init(hp, radius, isUser);
 }
 
 Hero::~Hero()
@@ -10,8 +10,9 @@ Hero::~Hero()
 
 }
 
-void Hero::Init(int hp, float radius)
+void Hero::Init(int hp, float radius, bool isUser)
 {
+	this->isUser = isUser;
 	this->hp = hp;
 	this->radius = radius;
 	for (int i = 0; i < MAX_HERO_TAILS + 1; i++)
@@ -22,12 +23,15 @@ void Hero::Init(int hp, float radius)
 
 void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 {
-	sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-	sf::Vector2f newPosition = Global::Lerp(sf::Vector2f(posX, posY),
-		sf::Vector2f(mousePosition.x, mousePosition.y),
-		Global::deltaTime * 10.0f);
-	posX = newPosition.x;
-	posY = newPosition.y;
+	if (isUser)
+	{
+		sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+		sf::Vector2f newPosition = Global::Lerp(sf::Vector2f(posX, posY),
+			sf::Vector2f(mousePosition.x, mousePosition.y),
+			Global::deltaTime * 10.0f);
+		posX = newPosition.x;
+		posY = newPosition.y;
+	}
 	circleShapes[0].setPosition(posX - radius, posY - radius);
 	for (int i = 0; i < MAX_HERO_TAILS; i++)
 	{
@@ -45,14 +49,22 @@ void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 		}
 	}
 
+
+
 	// 100 -> some const variable
-	for (int i = 0; i < 100; i++)
+	if (isUser)
 	{
-		if (monsters[i] != nullptr && IsCollided(monsters[i]))
+		for (int i = 0; i < 100; i++)
 		{
-			hp--;
-			Global::OnHeroHit();
-			monsters[i]->Die();
+			if (monsters[i] != nullptr && IsCollided(monsters[i]))
+			{
+				if (!isInvincible)
+				{
+					hp--;
+					Global::OnHeroHit();
+				}
+				monsters[i]->Die();
+			}
 		}
 	}
 
@@ -61,7 +73,7 @@ void Hero::Update(sf::RenderWindow& window, BaseMonster* monsters[])
 		// Play sound
 		Global::PlaySoundEffect(SOUND_SOURCE::SOUND_SOURCE_HERO_DIE);
 
-		Global::OnHeroDied();
+		Global::OnHeroDied(isUser);
 	}
 }
 
@@ -86,6 +98,25 @@ void Hero::SetHp(int hp)
 	this->hp = hp;
 }
 
+void Hero::SetPosX(float x)
+{
+	posX = x;
+}
+
+void Hero::SetPosY(float y)
+{
+	posY = y;
+}
+
+void Hero::setInvincible(bool newState)
+{
+	this->isInvincible = newState;
+}
+
+void Hero::setUsed(bool newUse)
+{
+	this->usedInvincible = newUse;
+}
 
 bool Hero::IsCollided(BaseMonster* monster)
 {
