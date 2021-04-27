@@ -166,6 +166,7 @@
     <ClCompile Include="SceneScores.cpp" />
     <ClCompile Include="TargetMonster.cpp" />
     <ClCompile Include="TeleportMonster.cpp" />
+    <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseMonster.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="SceneScores.h" />
     <ClInclude Include="TargetMonster.h" />
     <ClInclude Include="TeleportMonster.h" />
+    <ClInclude Include="TestClass.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ranks.txt" />

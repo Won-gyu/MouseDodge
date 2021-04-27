@@ -1,8 +1,19 @@
 #include "MenuWrapper.h"
 #include "Global.h"
+#include "TestClass.h"
 
 int main()
 {
+	// Initial test cases
+	TestClass tester;
+	tester.testBSTInsert();
+	tester.testBSTGetLength();
+	tester.testBSTSetLength();
+	tester.testBSTPrintToFile();
+	tester.testBSTPopulateFromFile();
+	std::cout << std::endl;
+
+	// Game
 	sf::RenderWindow window(sf::VideoMode(1280, 960), "Mouse Dodge");
 	sf::Event event;
 

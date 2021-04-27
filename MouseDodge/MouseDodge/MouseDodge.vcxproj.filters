@@ -81,6 +81,9 @@
     <ClCompile Include="TeleportMonster.cpp">
       <Filter>Source Files\InGameObjects\Monsters</Filter>
     </ClCompile>
+    <ClCompile Include="TestClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuWrapper.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="TeleportMonster.h">
       <Filter>Header Files\InGameObjects\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="TestClass.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

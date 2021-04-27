@@ -24,6 +24,9 @@ public:
 	int getLength() const;
 	void setLength(int newLength);
 
+	// For testing
+	bool checkForValue(const int data);
+
 private:
 	Node* pRoot;
 	ifstream inputFile;
@@ -32,5 +35,8 @@ private:
 	void printToFile(Node* pTree, ofstream& outputFile);
 	void populateFromFile(Node* pTree);
 	void destroyTree(Node* pTree);
+
+	// For testing
+	bool checkForValue(Node* pTree, const int data);
 };
 

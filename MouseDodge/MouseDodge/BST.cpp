@@ -36,6 +36,13 @@ void BST::setLength(int newLength)
 	this->length = newLength;
 }
 
+// For testing
+bool BST::checkForValue(const int data)
+{
+	return checkForValue(this->pRoot, data);
+}
+
+
 void BST::insert(Node* pTree, const int newData)
 {
 	if (pTree == nullptr)
@@ -119,4 +126,28 @@ void BST::destroyTree(Node* pTree)
 		destroyTree(pTree->getRight());
 		delete pTree;
 	}
+}
+
+bool BST::checkForValue(Node* pTree, const int data)
+{
+	if (pTree != nullptr)
+	{
+		if (data == pTree->getData())
+		{
+			return true;
+		}
+		else
+		{
+			if (checkForValue(pTree->getLeft(), data) == true)
+			{
+				return true;
+			}
+			else if (checkForValue(pTree->getRight(), data) == true)
+			{
+				return true;
+			}
+			return false;
+		}
+	}
+	return false;
 }
