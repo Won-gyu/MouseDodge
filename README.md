@@ -3,19 +3,19 @@
 - Hero starts with 10 HP and loses one every time it runs into a monster
 - Over time Hero will level up and gain HP, however the monsters will also get harder
 
-# Game Play
+## Game Play
 - Use the arrow keys to select options in the Menu
 - Use Esc to return from any window to the Menu
 - In the game use your mouse to move Hero away from monsters
 - If implemented, use the left mouse button to trigger Hero's invincibility
 
-# Testing Network (Currently Unstable)
+## Testing Network (Currently Unstable)
 - Open two instances of MouseDodge in different windows
 - Run the game in server mode from one window
 - After a few seconds open the game from client mode in the second window
 - You should be able to play on the cient window and view the game in the server window with a slight delay
 
-# Programmers
+## Programmers
 Won-gyu Hwang
 - Design the program framework
 - Implement Hero(has hp and movable by mouse), base Monster(has simple move patterns)
