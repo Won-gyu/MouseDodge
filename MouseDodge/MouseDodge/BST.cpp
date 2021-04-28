@@ -43,6 +43,13 @@ void BST::fillArray(int* arr)
 	fillArray(this->pRoot, arr);
 }
 
+// For testing
+bool BST::checkForValue(const int data)
+{
+	return checkForValue(this->pRoot, data);
+}
+
+
 void BST::insert(Node* pTree, const int newData)
 {
 	if (pTree == nullptr)
@@ -136,4 +143,28 @@ void BST::fillArray(Node* pTree, int* arr)
 		pos++;
 		fillArray(pTree->getLeft(), arr);
 	}
+}
+
+bool BST::checkForValue(Node* pTree, const int data)
+{
+	if (pTree != nullptr)
+	{
+		if (data == pTree->getData())
+		{
+			return true;
+		}
+		else
+		{
+			if (checkForValue(pTree->getLeft(), data) == true)
+			{
+				return true;
+			}
+			else if (checkForValue(pTree->getRight(), data) == true)
+			{
+				return true;
+			}
+			return false;
+		}
+	}
+	return false;
 }

@@ -25,6 +25,9 @@ public:
 	void setPos(int newPos);
 	void fillArray(int* arr);
 
+	// For testing
+	bool checkForValue(const int data);
+
 private:
 	Node* pRoot;
 	ifstream inputFile;
@@ -34,5 +37,8 @@ private:
 	void populateFromFile(Node* pTree);
 	void destroyTree(Node* pTree);
 	void fillArray(Node* pTree, int* arr);
+
+	// For testing
+	bool checkForValue(Node* pTree, const int data);
 };
 

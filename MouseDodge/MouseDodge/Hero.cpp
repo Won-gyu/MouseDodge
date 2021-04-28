@@ -17,6 +17,10 @@ void Hero::Init(int hp, float radius, bool isUser)
 	this->radius = radius;
 	for (int i = 0; i < MAX_HERO_TAILS + 1; i++)
 	{
+		if (!isUser)
+		{
+			circleShapes[i].setFillColor(sf::Color::Yellow);
+		}
 		circleShapes[i].setRadius(radius);
 	}
 }
