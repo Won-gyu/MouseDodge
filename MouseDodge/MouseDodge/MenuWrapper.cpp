@@ -111,9 +111,19 @@ void MenuWrapper::OnEvent(const sf::Event& event)
 	{
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
-			if (event.mouseButton.button == sf::Mouse::Right)
+			if (event.mouseButton.button == sf::Mouse::Left)
 			{
-				
+				//if (this->GetInGame().getHero().getUsed() == false)
+				//{
+				//	int time = iTimer.getElapsedTime().asSeconds();
+				//	this->GetInGame().getHero().setInvincible(true);
+				//	this->GetInGame().getHero().setUsed(true);
+				//	while (iTimer.getElapsedTime().asSeconds() < time + 10)
+				//	{
+				//		// nothing
+				//	}
+				//	this->GetInGame().getHero().setInvincible(false);
+				//}
 			}
 		}
 	}

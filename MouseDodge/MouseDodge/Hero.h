@@ -24,6 +24,7 @@ public:
 
 	void setInvincible(bool newState);
 	void setUsed(bool newUse);
+	bool getUsed() const;
 
 	sf::Vector2f& getPostition() const;
 

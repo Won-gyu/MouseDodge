@@ -269,3 +269,8 @@ int InGame::getScore() const
 {
 	return this->score;
 }
+
+Hero InGame::getHero() const
+{
+	return this->hero;
+}

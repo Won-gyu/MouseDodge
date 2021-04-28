@@ -16,5 +16,7 @@ public:
 
 private:
 	sf::Text header;
-
+	sf::Text line;
+	sf::Text text[10];
+	sf::Text nums[10];
 };

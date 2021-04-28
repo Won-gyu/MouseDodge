@@ -52,6 +52,7 @@ private:
 	sf::Text text[MENU_COUNT];
 	sf::Text title;
 	sf::Text line;
+	sf::Clock iTimer;
 
 	InGame inGame;
 	SceneScores sceneScores;

@@ -118,6 +118,11 @@ void Hero::setUsed(bool newUse)
 	this->usedInvincible = newUse;
 }
 
+bool Hero::getUsed() const
+{
+	return this->usedInvincible;
+}
+
 bool Hero::IsCollided(BaseMonster* monster)
 {
 	float distanceX;

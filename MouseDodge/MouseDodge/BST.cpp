@@ -3,6 +3,7 @@
 BST::BST()
 {
 	this->pRoot = nullptr;
+	this->pos = 0;
 }
 
 BST::~BST()
@@ -26,14 +27,20 @@ void BST::populateFromFile()
 	populateFromFile(this->pRoot);
 }
 
-int BST::getLength() const
+int BST::getPos() const
 {
-	return this->length;
+	return this->pos;
 }
 
-void BST::setLength(int newLength)
+void BST::setPos(int newPos)
 {
-	this->length = newLength;
+	this->pos = newPos;
+}
+
+void BST::fillArray(int* arr)
+{
+	pos = 0;
+	fillArray(this->pRoot, arr);
 }
 
 void BST::insert(Node* pTree, const int newData)
@@ -94,7 +101,7 @@ void BST::populateFromFile(Node* pTree)
 	int num = 0;
 	string temp = "";
 
-	if (inputFile.is_open());
+	if (inputFile.is_open())
 	{
 		while (!inputFile.eof())
 		{
@@ -103,7 +110,6 @@ void BST::populateFromFile(Node* pTree)
 			{
 				num = stoi(temp);
 				insert(num);
-				length += 1;
 			}
 		}
 	}
@@ -118,5 +124,16 @@ void BST::destroyTree(Node* pTree)
 		destroyTree(pTree->getLeft());
 		destroyTree(pTree->getRight());
 		delete pTree;
+	}
+}
+
+void BST::fillArray(Node* pTree, int* arr)
+{
+	if (pTree != nullptr)
+	{
+		fillArray(pTree->getRight(), arr);
+		arr[pos] = pTree->getData();
+		pos++;
+		fillArray(pTree->getLeft(), arr);
 	}
 }

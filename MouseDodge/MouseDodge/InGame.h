@@ -34,6 +34,8 @@ public:
 	sf::Vector2f& getHeroPosition() const;
 	int getScore() const;
 
+	Hero getHero() const;
+
 private:
 	void UpdateScoreText();
 	void UpdateHpText();
